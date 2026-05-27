@@ -17,9 +17,9 @@
   <!-- ── Calendar ─────────────────────────────────────────── -->
   <div class="panel" id="calPanel">
     <div class="cal-header">
-      <button class="cal-nav" onclick="calPrev()" aria-label="Previous month">&#8249;</button>
+      <button class="cal-nav" id="calPrevBtn" aria-label="Previous month">&#8249;</button>
       <span class="cal-month" id="calMonth"></span>
-      <button class="cal-nav" onclick="calNext()" aria-label="Next month">&#8250;</button>
+      <button class="cal-nav" id="calNextBtn" aria-label="Next month">&#8250;</button>
     </div>
     <div class="cal-dow" aria-hidden="true">
       <span>Su</span><span>Mo</span><span>Tu</span>
@@ -42,16 +42,16 @@
   <div class="quick-log">
     <div class="label quick-log-label">Quick log today</div>
     <div class="quick-btns">
-      <button class="qbtn climb"  onclick="quickLog('climb')"  id="qbtn-climb">
+      <button class="qbtn climb"  id="qbtn-climb">
         <div class="qdot">🧗</div><span>Climb</span>
       </button>
-      <button class="qbtn cardio" onclick="quickLog('cardio')" id="qbtn-cardio">
+      <button class="qbtn cardio" id="qbtn-cardio">
         <div class="qdot">🏃</div><span>Cardio</span>
       </button>
-      <button class="qbtn yoga"   onclick="quickLog('yoga')"   id="qbtn-yoga">
+      <button class="qbtn yoga"   id="qbtn-yoga">
         <div class="qdot">🧘</div><span>Yoga</span>
       </button>
-      <button class="qbtn walk"   onclick="quickLog('walk')"   id="qbtn-walk">
+      <button class="qbtn walk"   id="qbtn-walk">
         <div class="qdot">🚶</div><span>Walk / Other</span>
       </button>
     </div>
@@ -64,20 +64,19 @@
     <div class="label timer-label">Rest timer</div>
     <div class="timer-display" id="timerDisplay">01:00</div>
     <div class="timer-presets">
-      <button class="preset-btn active" onclick="setPreset(60, this)">60s</button>
-      <button class="preset-btn"        onclick="setPreset(90, this)">90s</button>
+      <button class="preset-btn active" data-secs="60">60s</button>
+      <button class="preset-btn"        data-secs="90">90s</button>
       <div class="timer-custom">
         <input
           type="number" id="customTime" min="1" max="600" placeholder="—"
           aria-label="Custom seconds"
-          onchange="setCustomTime()" onkeydown="if(event.key==='Enter') setCustomTime()"
         />
         <span>sec</span>
       </div>
     </div>
     <div class="timer-controls">
-      <button class="ctrl-btn start" id="startPauseBtn" onclick="toggleStartPause()">Start</button>
-      <button class="ctrl-btn"                          onclick="resetTimer()">Reset</button>
+      <button class="ctrl-btn start" id="startPauseBtn">Start</button>
+      <button class="ctrl-btn" id="resetBtn">Reset</button>
     </div>
   </div>
 
