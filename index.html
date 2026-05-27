@@ -8,24 +8,23 @@
 </head>
 <body>
 
-  <!-- ── Header ──────────────────────────────────────────── -->
   <header class="app-header">
     <span class="app-title">Workout Tracker</span>
     <span class="app-date" id="appDate"></span>
   </header>
 
-  <!-- ── Calendar ─────────────────────────────────────────── -->
-  <div class="panel" id="calPanel">
+  <!-- Calendar -->
+  <div class="panel">
     <div class="cal-header">
-      <button class="cal-nav" id="calPrevBtn" aria-label="Previous month">&#8249;</button>
+      <button class="cal-nav" id="calPrev">&#8249;</button>
       <span class="cal-month" id="calMonth"></span>
-      <button class="cal-nav" id="calNextBtn" aria-label="Next month">&#8250;</button>
+      <button class="cal-nav" id="calNext">&#8250;</button>
     </div>
-    <div class="cal-dow" aria-hidden="true">
+    <div class="cal-dow">
       <span>Su</span><span>Mo</span><span>Tu</span>
       <span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
     </div>
-    <div class="cal-days" id="calDays" role="grid" aria-label="Workout calendar"></div>
+    <div class="cal-days" id="calDays"></div>
     <div class="streak-bar">
       <div>
         <div class="streak-count" id="streakCount">0</div>
@@ -33,44 +32,51 @@
       </div>
       <div class="streak-sessions">
         <div id="streakSessions">0 sessions</div>
-        <div id="streakMonthLabel" style="color:var(--dim);font-size:9px;font-family:var(--font-mono)"></div>
+        <div id="streakMonthLabel"></div>
       </div>
     </div>
   </div>
 
-  <!-- ── Quick log ─────────────────────────────────────────── -->
-  <div class="quick-log">
-    <div class="label quick-log-label">Quick log today</div>
-    <div class="quick-btns">
-      <button class="qbtn climb"  id="qbtn-climb">
-        <div class="qdot">🧗</div><span>Climb</span>
-      </button>
-      <button class="qbtn cardio" id="qbtn-cardio">
-        <div class="qdot">🏃</div><span>Cardio</span>
-      </button>
-      <button class="qbtn yoga"   id="qbtn-yoga">
-        <div class="qdot">🧘</div><span>Yoga</span>
-      </button>
-      <button class="qbtn walk"   id="qbtn-walk">
-        <div class="qdot">🚶</div><span>Walk / Other</span>
-      </button>
-    </div>
+  <!-- Quick log -->
+  <div class="section-label">Quick log today</div>
+  <div class="quick-btns" id="quickBtns">
+    <button class="qbtn" data-type="upper">
+      <div class="qdot" style="background:var(--c-upper)"></div>
+      <span>Upper</span>
+    </button>
+    <button class="qbtn" data-type="lower">
+      <div class="qdot" style="background:var(--c-lower)"></div>
+      <span>Lower</span>
+    </button>
+    <button class="qbtn" data-type="climb">
+      <div class="qdot" style="background:var(--c-climb)"></div>
+      <span>Climb</span>
+    </button>
+    <button class="qbtn" data-type="cardio">
+      <div class="qdot" style="background:var(--c-cardio)"></div>
+      <span>Cardio</span>
+    </button>
+    <button class="qbtn" data-type="yoga">
+      <div class="qdot" style="background:var(--c-yoga)"></div>
+      <span>Yoga</span>
+    </button>
+    <button class="qbtn" data-type="walk">
+      <div class="qdot" style="background:var(--c-walk)"></div>
+      <span>Walk/Other</span>
+    </button>
   </div>
 
   <div class="divider"></div>
 
-  <!-- ── Timer ─────────────────────────────────────────────── -->
-  <div class="panel" id="timerPanel">
-    <div class="label timer-label">Rest timer</div>
+  <!-- Timer -->
+  <div class="panel">
+    <div class="section-label" style="margin-bottom:8px">Rest timer</div>
     <div class="timer-display" id="timerDisplay">01:00</div>
     <div class="timer-presets">
       <button class="preset-btn active" data-secs="60">60s</button>
-      <button class="preset-btn"        data-secs="90">90s</button>
+      <button class="preset-btn" data-secs="90">90s</button>
       <div class="timer-custom">
-        <input
-          type="number" id="customTime" min="1" max="600" placeholder="—"
-          aria-label="Custom seconds"
-        />
+        <input type="number" id="customTime" min="1" max="600" placeholder="—" />
         <span>sec</span>
       </div>
     </div>
@@ -82,15 +88,13 @@
 
   <div class="divider"></div>
 
-  <!-- ── Workout cards ─────────────────────────────────────── -->
-  <div class="label workouts-label">Workouts</div>
+  <!-- Workout cards -->
+  <div class="section-label" style="margin-bottom:10px">Workouts</div>
   <div class="workout-grid" id="workoutGrid"></div>
+  <div class="workout-open" id="workoutOpen"></div>
 
-  <!-- ── Open workout panel ────────────────────────────────── -->
-  <div class="workout-open" id="workoutOpen" aria-live="polite"></div>
-
-  <!-- ── Toast ─────────────────────────────────────────────── -->
-  <div class="toast" id="toast" aria-live="assertive"></div>
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
 
   <script src="app.js"></script>
 </body>
