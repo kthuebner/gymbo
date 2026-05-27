@@ -14,82 +14,83 @@
     <span class="app-date" id="appDate"></span>
   </header>
 
-  <!-- ── Top widgets: Timer + Calendar ───────────────────── -->
-  <div class="widgets-row">
-
-    <!-- Timer -->
-    <div class="panel" id="timerPanel">
-      <div class="label timer-label">Rest timer</div>
-
-      <div class="timer-display" id="timerDisplay">01:00</div>
-
-      <div class="timer-presets">
-        <button class="preset-btn active" onclick="setPreset(60, this)">60s</button>
-        <button class="preset-btn"        onclick="setPreset(90, this)">90s</button>
-        <div class="timer-custom">
-          <input
-            type="number"
-            id="customTime"
-            min="1"
-            max="600"
-            placeholder="—"
-            aria-label="Custom time in seconds"
-            onchange="setCustomTime()"
-            onkeydown="if(event.key==='Enter') setCustomTime()"
-          />
-          <span>sec</span>
-        </div>
+  <!-- ── Calendar ─────────────────────────────────────────── -->
+  <div class="panel" id="calPanel">
+    <div class="cal-header">
+      <button class="cal-nav" onclick="calPrev()" aria-label="Previous month">&#8249;</button>
+      <span class="cal-month" id="calMonth"></span>
+      <button class="cal-nav" onclick="calNext()" aria-label="Next month">&#8250;</button>
+    </div>
+    <div class="cal-dow" aria-hidden="true">
+      <span>Su</span><span>Mo</span><span>Tu</span>
+      <span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
+    </div>
+    <div class="cal-days" id="calDays" role="grid" aria-label="Workout calendar"></div>
+    <div class="streak-bar">
+      <div>
+        <div class="streak-count" id="streakCount">0</div>
+        <div class="streak-label">day streak</div>
       </div>
-
-      <div class="timer-controls">
-        <button class="ctrl-btn start" id="startPauseBtn" onclick="toggleStartPause()">Start</button>
-        <button class="ctrl-btn"                          onclick="resetTimer()">Reset</button>
+      <div class="streak-sessions">
+        <div id="streakSessions">0 sessions</div>
+        <div id="streakMonthLabel" style="color:var(--dim);font-size:9px;font-family:var(--font-mono)"></div>
       </div>
     </div>
+  </div>
 
-    <!-- Calendar -->
-    <div class="panel" id="calPanel">
-      <div class="cal-header">
-        <button class="cal-nav" onclick="calPrev()" aria-label="Previous month">&#8249;</button>
-        <span class="cal-month" id="calMonth"></span>
-        <button class="cal-nav" onclick="calNext()" aria-label="Next month">&#8250;</button>
-      </div>
-
-      <div class="cal-dow" aria-hidden="true">
-        <span>Su</span><span>Mo</span><span>Tu</span>
-        <span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
-      </div>
-
-      <div class="cal-days" id="calDays" role="grid" aria-label="Workout calendar"></div>
-
-      <div class="streak-bar">
-        <div>
-          <div class="streak-count" id="streakCount">0</div>
-          <div class="streak-label">day streak</div>
-        </div>
-        <div class="streak-sessions">
-          <div id="streakSessions">0 sessions</div>
-          <div id="streakMonthLabel" style="color: var(--dim); font-size: 9px;"></div>
-        </div>
-      </div>
+  <!-- ── Quick log ─────────────────────────────────────────── -->
+  <div class="quick-log">
+    <div class="label quick-log-label">Quick log today</div>
+    <div class="quick-btns">
+      <button class="qbtn climb"  onclick="quickLog('climb')"  id="qbtn-climb">
+        <div class="qdot">🧗</div><span>Climb</span>
+      </button>
+      <button class="qbtn cardio" onclick="quickLog('cardio')" id="qbtn-cardio">
+        <div class="qdot">🏃</div><span>Cardio</span>
+      </button>
+      <button class="qbtn yoga"   onclick="quickLog('yoga')"   id="qbtn-yoga">
+        <div class="qdot">🧘</div><span>Yoga</span>
+      </button>
+      <button class="qbtn walk"   onclick="quickLog('walk')"   id="qbtn-walk">
+        <div class="qdot">🚶</div><span>Walk / Other</span>
+      </button>
     </div>
-
-  </div><!-- /widgets-row -->
+  </div>
 
   <div class="divider"></div>
 
-  <!-- ── Workout cards ────────────────────────────────────── -->
+  <!-- ── Timer ─────────────────────────────────────────────── -->
+  <div class="panel" id="timerPanel">
+    <div class="label timer-label">Rest timer</div>
+    <div class="timer-display" id="timerDisplay">01:00</div>
+    <div class="timer-presets">
+      <button class="preset-btn active" onclick="setPreset(60, this)">60s</button>
+      <button class="preset-btn"        onclick="setPreset(90, this)">90s</button>
+      <div class="timer-custom">
+        <input
+          type="number" id="customTime" min="1" max="600" placeholder="—"
+          aria-label="Custom seconds"
+          onchange="setCustomTime()" onkeydown="if(event.key==='Enter') setCustomTime()"
+        />
+        <span>sec</span>
+      </div>
+    </div>
+    <div class="timer-controls">
+      <button class="ctrl-btn start" id="startPauseBtn" onclick="toggleStartPause()">Start</button>
+      <button class="ctrl-btn"                          onclick="resetTimer()">Reset</button>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ── Workout cards ─────────────────────────────────────── -->
   <div class="label workouts-label">Workouts</div>
-  <div class="workout-grid" id="workoutGrid">
-    <!-- Populated by app.js -->
-  </div>
+  <div class="workout-grid" id="workoutGrid"></div>
 
-  <!-- ── Open workout panel ───────────────────────────────── -->
-  <div class="workout-open" id="workoutOpen" aria-live="polite">
-    <!-- Populated by app.js when a card is opened -->
-  </div>
+  <!-- ── Open workout panel ────────────────────────────────── -->
+  <div class="workout-open" id="workoutOpen" aria-live="polite"></div>
 
-  <!-- ── Toast notification ───────────────────────────────── -->
+  <!-- ── Toast ─────────────────────────────────────────────── -->
   <div class="toast" id="toast" aria-live="assertive"></div>
 
   <script src="app.js"></script>
