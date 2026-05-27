@@ -132,7 +132,7 @@ function openWorkout(id) {
         <div class="open-name">${w.name}</div>
         <div class="open-sub">${w.typeLabel} · ${exCount} exercises</div>
       </div>
-      <button class="open-close" onclick="closeWorkout()" aria-label="Close">&#x2715;</button>
+      <button class="open-close" id="closeBtn" aria-label="Close">&#x2715;</button>
     </div>
     <div class="open-body">
       ${blocksHtml}
@@ -140,10 +140,17 @@ function openWorkout(id) {
         <div class="prog-label">Progression</div>
         <div class="prog-text">${w.progression}</div>
       </div>
-      <button class="log-btn${alreadyLogged ? ' logged' : ''}" id="logBtn" onclick="logWorkout('${w.id}','${w.type}')">
+      <button class="log-btn${alreadyLogged ? ' logged' : ''}" id="logBtn">
         ${checkSvg} ${alreadyLogged ? 'Logged today' : 'Log workout — mark today done'}
       </button>
     </div>`;
+
+  // Attach handlers via JS — more reliable on mobile than inline onclick
+  document.getElementById('closeBtn').addEventListener('click', closeWorkout);
+  const logBtn = document.getElementById('logBtn');
+  if (!alreadyLogged) {
+    logBtn.addEventListener('click', () => logWorkout(w.id, w.type));
+  }
 
   panel.classList.add('visible');
   setTimeout(() => panel.scrollIntoView({ behavior:'smooth', block:'nearest' }), 50);
@@ -346,19 +353,30 @@ window.addEventListener('DOMContentLoaded', () => {
   const days   = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
   const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   document.getElementById('appDate').textContent = `${days[d.getDay()]} ${months[d.getMonth()]} ${d.getDate()}`;
+
+  // Calendar nav
+  document.getElementById('calPrevBtn').addEventListener('click', calPrev);
+  document.getElementById('calNextBtn').addEventListener('click', calNext);
+
+  // Quick log buttons
+  ['climb','cardio','yoga','walk'].forEach(type => {
+    document.getElementById(`qbtn-${type}`)
+      .addEventListener('click', () => quickLog(type));
+  });
+
+  // Timer controls
+  document.getElementById('startPauseBtn').addEventListener('click', toggleStartPause);
+  document.getElementById('resetBtn').addEventListener('click', resetTimer);
+  document.getElementById('customTime').addEventListener('change', setCustomTime);
+  document.getElementById('customTime').addEventListener('keydown', e => {
+    if (e.key === 'Enter') setCustomTime();
+  });
+  document.querySelectorAll('.preset-btn').forEach(btn => {
+    btn.addEventListener('click', () => setPreset(parseInt(btn.dataset.secs), btn));
+  });
+
   renderCalendar();
   loadWorkouts();
   renderTimerDisplay();
   updateTimerBtn();
 });
-
-/* ── Globals for inline handlers ──────────────────────────── */
-window.calPrev          = calPrev;
-window.calNext          = calNext;
-window.setPreset        = setPreset;
-window.setCustomTime    = setCustomTime;
-window.toggleStartPause = toggleStartPause;
-window.resetTimer       = resetTimer;
-window.logWorkout       = logWorkout;
-window.quickLog         = quickLog;
-window.closeWorkout     = closeWorkout;
