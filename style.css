@@ -128,13 +128,25 @@ body {
 
 /* ── Quick log buttons ────────────────────────────────────── */
 .quick-log { margin-bottom: 10px; }
-.quick-log-label { margin-bottom: 8px; }
-.quick-btns { display: grid; grid-template-columns: repeat(4,1fr); gap: 6px; max-width: 400px; }
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-bottom: 8px;
+}
+.quick-btns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin-bottom: 10px;
+}
 .qbtn {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: 5px;
   padding: 10px 4px 8px;
   background: var(--surface);
   border: 1px solid var(--border);
@@ -142,21 +154,18 @@ body {
   cursor: pointer;
   transition: all .15s;
   font-family: var(--font-mono);
-  font-size: 9px;
-  letter-spacing: .06em;
+  font-size: 10px;
+  letter-spacing: .04em;
   color: var(--dim);
+  -webkit-tap-highlight-color: transparent;
 }
-.qbtn:hover { border-color: var(--border2); color: var(--text); }
-.qbtn .qdot {
-  width: 18px; height: 18px; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 12px;
+.qbtn:hover  { border-color: var(--border2); color: var(--text); }
+.qbtn:active { opacity: .75; }
+.qbtn-active { border-color: var(--border2); color: var(--text); opacity: .45; }
+.qdot {
+  width: 18px; height: 18px;
+  border-radius: 50%;
 }
-.qbtn.climb  .qdot { background: var(--c-climb); }
-.qbtn.cardio .qdot { background: var(--c-cardio); }
-.qbtn.yoga   .qdot { background: var(--c-yoga); }
-.qbtn.walk   .qdot { background: var(--c-walk); }
-.qbtn.active-today { opacity: .45; }
 
 /* ── Timer ────────────────────────────────────────────────── */
 .timer-label { margin-bottom: 8px; }
@@ -242,7 +251,6 @@ body {
 
 /* ── Open workout panel ───────────────────────────────────── */
 .workout-open { background: var(--surface); border: 1px solid var(--red); border-radius: var(--radius); overflow: hidden; display: none; }
-.workout-open.visible { display: block; }
 
 .open-header {
   background: var(--raised); padding: 14px 16px;
