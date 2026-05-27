@@ -1,0 +1,242 @@
+[
+  {
+    "id": "push-power",
+    "name": "Push & Power",
+    "type": "upper",
+    "typeLabel": "Upper body",
+    "blocks": [
+      {
+        "title": "Block 1 — Primary press",
+        "rest": "90s rest",
+        "exercises": [
+          {
+            "name": "DB flat bench press",
+            "sets": "3 × 6–8",
+            "note": "heavier load",
+            "tip": "Full ROM — touch chest, lock out at top. Drive feet into floor."
+          },
+          {
+            "name": "DB incline press",
+            "sets": "3 × 8–10",
+            "note": "",
+            "tip": "Bench at ~30°. Keep elbows at 45° angle from torso."
+          }
+        ]
+      },
+      {
+        "title": "Block 2 — Shoulder & overhead",
+        "rest": "75s rest",
+        "exercises": [
+          {
+            "name": "Standing DB overhead press",
+            "sets": "3 × 8–10",
+            "note": "",
+            "tip": "Brace core hard. Don't flare ribs at lockout."
+          },
+          {
+            "name": "DB lateral raise",
+            "sets": "3 × 12–15",
+            "note": "",
+            "tip": "Lead with elbows, slight forward lean. Pause briefly at the top."
+          }
+        ]
+      },
+      {
+        "title": "Block 3 — Triceps & finisher",
+        "rest": "60s rest",
+        "exercises": [
+          {
+            "name": "DB skull crusher",
+            "sets": "3 × 10–12",
+            "note": "",
+            "tip": "Lower to temples, not forehead. Keep upper arms vertical."
+          },
+          {
+            "name": "Medicine ball push-up",
+            "sets": "3 × 8 per side",
+            "note": "",
+            "tip": "One hand on the ball, one on the floor. Alternate sides each set."
+          }
+        ]
+      }
+    ],
+    "progression": "Once 3 × 8 (or top of rep range) feels solid with clean form, add the next dumbbell increment on your next session."
+  },
+  {
+    "id": "pull-build",
+    "name": "Pull & Build",
+    "type": "upper",
+    "typeLabel": "Upper body",
+    "blocks": [
+      {
+        "title": "Block 1 — Horizontal pull",
+        "rest": "90s rest",
+        "exercises": [
+          {
+            "name": "Chest-supported DB row",
+            "sets": "3 × 8–10",
+            "note": "heavier load",
+            "tip": "Incline bench at ~45°. Pull elbows past torso, squeeze at top."
+          },
+          {
+            "name": "Single-arm DB row",
+            "sets": "3 × 10 per side",
+            "note": "",
+            "tip": "Brace against bench. Let shoulder blade protract at the bottom."
+          }
+        ]
+      },
+      {
+        "title": "Block 2 — Vertical pull & rear delts",
+        "rest": "75s rest",
+        "exercises": [
+          {
+            "name": "Band pull-apart",
+            "sets": "3 × 15–20",
+            "note": "",
+            "tip": "Arms straight, pull to full stretch. Slow the return — don't snap back."
+          },
+          {
+            "name": "DB rear delt fly (prone on bench)",
+            "sets": "3 × 12–15",
+            "note": "",
+            "tip": "Lie face-down on incline bench. Lead with elbows, not hands."
+          }
+        ]
+      },
+      {
+        "title": "Block 3 — Biceps & grip",
+        "rest": "60s rest",
+        "exercises": [
+          {
+            "name": "Incline DB curl",
+            "sets": "3 × 10–12",
+            "note": "",
+            "tip": "Arms hanging on incline bench — maximizes bicep stretch at the bottom."
+          },
+          {
+            "name": "DB hammer curl",
+            "sets": "3 × 10–12",
+            "note": "",
+            "tip": "Neutral grip hits brachialis and brachioradialis — adds arm thickness."
+          }
+        ]
+      }
+    ],
+    "progression": "Once 3 × 10 rows feels controlled with no momentum, increase weight. For band exercises, slow the tempo before adding resistance."
+  },
+  {
+    "id": "squat-focus",
+    "name": "Squat Focus",
+    "type": "lower",
+    "typeLabel": "Lower body",
+    "blocks": [
+      {
+        "title": "Block 1 — Bilateral squat",
+        "rest": "90s rest",
+        "exercises": [
+          {
+            "name": "Goblet squat",
+            "sets": "4 × 8–10",
+            "note": "heaviest DB",
+            "tip": "Hold one heavy DB at chest. Elbows inside knees at bottom. Drive through full foot."
+          }
+        ]
+      },
+      {
+        "title": "Block 2 — Unilateral strength",
+        "rest": "75s rest",
+        "exercises": [
+          {
+            "name": "Bulgarian split squat (DB)",
+            "sets": "3 × 8 per leg",
+            "note": "",
+            "tip": "Rear foot elevated on bench. Front shin stays vertical. Lower slowly — 3 seconds down."
+          },
+          {
+            "name": "DB step-up (bench)",
+            "sets": "3 × 10 per leg",
+            "note": "",
+            "tip": "Drive through the heel of the working leg. Don't push off the trailing foot."
+          }
+        ]
+      },
+      {
+        "title": "Block 3 — Posterior & core",
+        "rest": "60s rest",
+        "exercises": [
+          {
+            "name": "DB Romanian deadlift",
+            "sets": "3 × 10–12",
+            "note": "",
+            "tip": "Soft knee, hinge at hip. Feel hamstring stretch before driving hips forward."
+          },
+          {
+            "name": "Medicine ball slam",
+            "sets": "3 × 8",
+            "note": "",
+            "tip": "Full extension overhead, violent exhale on the slam."
+          }
+        ]
+      }
+    ],
+    "progression": "Bulgarian split squats are the priority — add load here first. Once 3 × 8 per leg is clean, add weight."
+  },
+  {
+    "id": "hinge-drive",
+    "name": "Hinge & Drive",
+    "type": "lower",
+    "typeLabel": "Lower body",
+    "blocks": [
+      {
+        "title": "Block 1 — Hip hinge (heavy)",
+        "rest": "2 min rest",
+        "exercises": [
+          {
+            "name": "Single-leg DB RDL",
+            "sets": "4 × 8 per leg",
+            "note": "challenging weight",
+            "tip": "Slight bend in standing knee. Hinge until deep hamstring pull — don't chase depth with a rounded back."
+          }
+        ]
+      },
+      {
+        "title": "Block 2 — Glute & hamstring",
+        "rest": "75s rest",
+        "exercises": [
+          {
+            "name": "DB hip thrust (bench)",
+            "sets": "3 × 10–12",
+            "note": "",
+            "tip": "Upper back on bench, DB across hips. Full glute squeeze at lockout."
+          },
+          {
+            "name": "Band pull-through",
+            "sets": "3 × 15",
+            "note": "",
+            "tip": "Anchor band low, hinge back, drive hips through."
+          }
+        ]
+      },
+      {
+        "title": "Block 3 — Explosive & calf",
+        "rest": "60s rest",
+        "exercises": [
+          {
+            "name": "Medicine ball squat jump throw",
+            "sets": "3 × 6",
+            "note": "",
+            "tip": "Squat holding ball, explode up and release overhead. Absorb landing softly."
+          },
+          {
+            "name": "Single-leg calf raise (DB)",
+            "sets": "3 × 12–15 per leg",
+            "note": "",
+            "tip": "Stand on edge of a step if possible. Full range — don't bounce at the bottom."
+          }
+        ]
+      }
+    ],
+    "progression": "Single-leg RDL is the anchor — once 4 × 8 per leg is controlled and balanced, add weight."
+  }
+]
