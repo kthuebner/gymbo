@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Workout Tracker</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
@@ -24,7 +24,9 @@
       <span>Su</span><span>Mo</span><span>Tu</span>
       <span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
     </div>
-    <div class="cal-days" id="calDays"></div>
+    <div class="cal-grid-wrap">
+      <div class="cal-days" id="calDays"></div>
+    </div>
     <div class="streak-bar">
       <div>
         <div class="streak-count" id="streakCount">0</div>
@@ -39,30 +41,24 @@
 
   <!-- Quick log -->
   <div class="section-label">Quick log today</div>
-  <div class="quick-btns" id="quickBtns">
+  <div class="quick-btns">
     <button class="qbtn" data-type="upper">
-      <div class="qdot" style="background:var(--c-upper)"></div>
-      <span>Upper</span>
+      <div class="qdot" style="background:var(--c-upper)"></div><span>Upper</span>
     </button>
     <button class="qbtn" data-type="lower">
-      <div class="qdot" style="background:var(--c-lower)"></div>
-      <span>Lower</span>
+      <div class="qdot" style="background:var(--c-lower)"></div><span>Lower</span>
     </button>
     <button class="qbtn" data-type="climb">
-      <div class="qdot" style="background:var(--c-climb)"></div>
-      <span>Climb</span>
+      <div class="qdot" style="background:var(--c-climb)"></div><span>Climb</span>
     </button>
     <button class="qbtn" data-type="cardio">
-      <div class="qdot" style="background:var(--c-cardio)"></div>
-      <span>Cardio</span>
+      <div class="qdot" style="background:var(--c-cardio)"></div><span>Cardio</span>
     </button>
     <button class="qbtn" data-type="yoga">
-      <div class="qdot" style="background:var(--c-yoga)"></div>
-      <span>Yoga</span>
+      <div class="qdot" style="background:var(--c-yoga)"></div><span>Yoga</span>
     </button>
     <button class="qbtn" data-type="walk">
-      <div class="qdot" style="background:var(--c-walk)"></div>
-      <span>Walk/Other</span>
+      <div class="qdot" style="background:var(--c-walk)"></div><span>Walk/Other</span>
     </button>
   </div>
 
@@ -76,7 +72,7 @@
       <button class="preset-btn active" data-secs="60">60s</button>
       <button class="preset-btn" data-secs="90">90s</button>
       <div class="timer-custom">
-        <input type="number" id="customTime" min="1" max="600" placeholder="—" />
+        <input type="number" id="customTime" min="1" max="600" placeholder="—"/>
         <span>sec</span>
       </div>
     </div>
@@ -92,6 +88,9 @@
   <div class="section-label" style="margin-bottom:10px">Workouts</div>
   <div class="workout-grid" id="workoutGrid"></div>
   <div class="workout-open" id="workoutOpen"></div>
+
+  <!-- Day picker modal -->
+  <div class="dp-modal" id="dayPickerModal" style="display:none"></div>
 
   <!-- Toast -->
   <div class="toast" id="toast"></div>
