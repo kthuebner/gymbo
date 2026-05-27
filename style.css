@@ -129,7 +129,7 @@ body {
 /* ── Quick log buttons ────────────────────────────────────── */
 .quick-log { margin-bottom: 10px; }
 .quick-log-label { margin-bottom: 8px; }
-.quick-btns { display: grid; grid-template-columns: repeat(4,1fr); gap: 6px; }
+.quick-btns { display: grid; grid-template-columns: repeat(4,1fr); gap: 6px; max-width: 400px; }
 .qbtn {
   display: flex;
   flex-direction: column;
