@@ -169,6 +169,7 @@ body {
 .blk-check:checked::after { content:''; position:absolute; left:5px; top:2px; width:8px; height:12px; border:2.5px solid #fff; border-top:none; border-left:none; transform:rotate(42deg); }
 .blk-title { font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); }
 .blk-rest  { font-family:var(--mono); font-size:10px; color:var(--red-dim); margin-top:2px; }
+.blk-note  { font-family:var(--mono); font-size:9px; color:var(--dim); margin-top:3px; letter-spacing:.03em; }
 .ex-row    { display:flex; justify-content:space-between; align-items:flex-start; padding:12px 0; border-bottom:1px solid #181818; gap:12px; }
 .ex-row:last-of-type { border-bottom:none; }
 .ex-name   { font-size:17px; font-weight:600; color:var(--text); margin-bottom:3px; line-height:1.25; }
@@ -289,6 +290,7 @@ var MOS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','De
 /* ── State ── */
 var workouts    = [];
 var openId      = null;
+var archivedWorkouts = [];
 var calY        = new Date().getFullYear();
 var calM        = new Date().getMonth();
 var tTotal      = 60;
@@ -478,7 +480,11 @@ function openCard(id){
     return '<div class="block">'+
       '<div class="blk-head">'+
         '<input type="checkbox" class="blk-check" id="ck'+bi+'">'+
-        '<div><div class="blk-title">'+b.title+'</div><div class="blk-rest">'+b.rest+'</div></div>'+
+        '<div>'+
+          '<div class="blk-title">'+b.title+'</div>'+
+          '<div class="blk-rest">'+b.rest+'</div>'+
+          (b.note?'<div class="blk-note">'+b.note+'</div>':'')+
+        '</div>'+
       '</div>'+
       b.exercises.map(function(ex){
         return '<div class="ex-row">'+
@@ -625,8 +631,12 @@ document.addEventListener('DOMContentLoaded',function(){
 
   fetch('workouts.json')
     .then(function(r){return r.json();})
-    .then(function(data){workouts=data;renderCards();})
-    .catch(function(){workouts=[];renderCards();});
+    .then(function(data){
+      workouts         = Array.isArray(data) ? data : (data.active   || []);
+      archivedWorkouts = Array.isArray(data) ? []   : (data.archived || []);
+      renderCards();
+    })
+    .catch(function(){workouts=[];archivedWorkouts=[];renderCards();});
 
   renderCal();
   renderTimer();
