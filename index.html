@@ -175,7 +175,7 @@ body {
 .ex-name   { font-size:17px; font-weight:600; color:var(--text); margin-bottom:3px; line-height:1.25; }
 .ex-tip    { font-size:12px; color:var(--muted); line-height:1.45; }
 .ex-right  { text-align:right; flex-shrink:0; }
-.ex-sets   { font-family:var(--mono); font-size:17px; font-weight:600; color:var(--text); white-space:nowrap; }
+.ex-sets   { font-family:var(--mono); font-size:14px; font-weight:600; color:var(--text); white-space:normal; text-align:right; max-width:140px; line-height:1.4; }
 .ex-note   { font-family:var(--mono); font-size:10px; color:var(--dim); margin-top:3px; }
 .prog-box  { margin-top:18px; padding:11px 13px; background:var(--raised); border-radius:7px; border-left:2px solid var(--red-dim); }
 .prog-lbl  { font-family:var(--mono); font-size:9px; letter-spacing:.1em; text-transform:uppercase; color:var(--dim); margin-bottom:4px; }
@@ -184,7 +184,6 @@ body {
 .log-btn:active { opacity:.8; }
 .log-btn.done { background:#1a3a1a; border:1px solid #2a5a2a; color:#5aaa5a; cursor:default; }
 
-/* ── Toast ── */
 .toast { position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(60px); background:var(--raised); border:1px solid var(--border2); border-radius:8px; padding:11px 20px; font-family:var(--mono); font-size:12px; color:var(--text); opacity:0; transition:all .3s; pointer-events:none; white-space:nowrap; z-index:999; }
 .toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
 
@@ -192,6 +191,21 @@ body {
   .timer-display { font-size:46px; }
   .ex-name,.ex-sets { font-size:15px; }
 }
+
+/* ── Archive dropdown ── */
+.archive-wrap { margin-bottom:10px; }
+.archive-select {
+  width:100%; padding:11px 14px; background:var(--surface);
+  border:1px solid var(--border); border-radius:var(--radius);
+  color:var(--muted); font-family:var(--mono); font-size:12px;
+  cursor:pointer; appearance:none; -webkit-appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23555' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat; background-position:right 14px center;
+  padding-right:36px;
+}
+.archive-select:focus { outline:none; border-color:var(--border2); color:var(--text); }
+.archive-panel { margin-top:8px; }
+
 </style>
 </head>
 <body>
@@ -244,6 +258,7 @@ body {
   <div class="timer-row">
     <button class="preset-btn active" data-secs="60">60s</button>
     <button class="preset-btn" data-secs="90">90s</button>
+    <button class="preset-btn" data-secs="1200">20m</button>
     <div class="custom-wrap">
       <input type="number" id="customTime" min="1" max="600" placeholder="—"/>
       <span>sec</span>
@@ -253,6 +268,17 @@ body {
     <button class="ctrl-btn start" id="startPauseBtn">Start</button>
     <button class="ctrl-btn" id="resetBtn">Reset</button>
   </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- Archive dropdown -->
+<span class="slabel">Past workouts</span>
+<div class="archive-wrap">
+  <select class="archive-select" id="archiveSelect">
+    <option value="">-- Select an archived workout --</option>
+  </select>
+  <div class="archive-panel wo-open" id="archivePanel" style="margin-top:8px;"></div>
 </div>
 
 <div class="divider"></div>
@@ -318,7 +344,6 @@ function niceDateFromKey(k){
   return MOS[parseInt(p[1])-1]+' '+parseInt(p[2]);
 }
 
-/* ── Toast ── */
 function toast(msg){
   var el=document.getElementById('toast');
   el.textContent=msg; el.classList.add('show');
@@ -603,11 +628,88 @@ function beep(){
 /* ══════════════════════════════════════
    BOOT
 ══════════════════════════════════════ */
+/* ══════════════════════════════════════
+   ARCHIVE
+══════════════════════════════════════ */
+function populateArchiveSelect(){
+  var sel = document.getElementById('archiveSelect');
+  // clear existing options except placeholder
+  while(sel.options.length > 1) sel.remove(1);
+  archivedWorkouts.forEach(function(w){
+    var opt = document.createElement('option');
+    opt.value = w.id;
+    opt.textContent = w.name + ' (' + w.typeLabel + ')';
+    sel.appendChild(opt);
+  });
+  if(archivedWorkouts.length === 0){
+    var opt = document.createElement('option');
+    opt.disabled = true;
+    opt.textContent = 'No archived workouts yet';
+    sel.appendChild(opt);
+  }
+}
+
+function openArchiveWorkout(id){
+  var w = archivedWorkouts.find(function(x){return x.id===id;});
+  var panel = document.getElementById('archivePanel');
+  if(!w){ panel.style.display='none'; panel.innerHTML=''; return; }
+
+  var logs = getLogs();
+  var logged = (logs[todayKey()] === w.type);
+  var exCount = w.blocks.reduce(function(s,b){return s+b.exercises.length;},0);
+
+  var bHtml = w.blocks.map(function(b,bi){
+    return '<div class="block">'+
+      '<div class="blk-head">'+
+        '<input type="checkbox" class="blk-check" id="ack'+bi+'">'+
+        '<div>'+
+          '<div class="blk-title">'+b.title+'</div>'+
+          '<div class="blk-rest">'+b.rest+'</div>'+
+          (b.note?'<div class="blk-note">'+b.note+'</div>':'')+
+        '</div>'+
+      '</div>'+
+      b.exercises.map(function(ex){
+        return '<div class="ex-row">'+
+          '<div><div class="ex-name">'+ex.name+'</div><div class="ex-tip">'+ex.tip+'</div></div>'+
+          '<div class="ex-right"><div class="ex-sets">'+ex.sets+'</div>'+(ex.note?'<div class="ex-note">'+ex.note+'</div>':'')+' </div>'+
+        '</div>';
+      }).join('')+
+    '</div>';
+  }).join('');
+
+  panel.innerHTML =
+    '<div class="wo-open-head">'+
+      '<div><div class="wo-open-name">'+w.name+'</div>'+
+      '<div class="wo-open-sub">'+w.typeLabel+' &middot; '+exCount+' exercises &middot; archived</div></div>'+
+    '</div>'+
+    '<div class="wo-body">'+
+      bHtml+
+      '<div class="prog-box"><div class="prog-lbl">Progression</div><div class="prog-txt">'+w.progression+'</div></div>'+
+      '<button class="log-btn'+(logged?' done':'')+'" id="archLogBtn">'+(logged?'&#10003; Logged today':'&#10003; Log this workout today')+'</button>'+
+    '</div>';
+
+  panel.style.display = 'block';
+
+  if(!logged){
+    document.getElementById('archLogBtn').addEventListener('click',function(){
+      doLog(w.id, w.type);
+      var btn = document.getElementById('archLogBtn');
+      if(btn){btn.className='log-btn done';btn.textContent='✓ Logged today';}
+    });
+  }
+}
+
 document.addEventListener('DOMContentLoaded',function(){
   var d=new Date();
   var DN=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
   var MN=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   document.getElementById('appDate').textContent=DN[d.getDay()]+' '+MN[d.getMonth()]+' '+d.getDate();
+
+  var archSel = document.getElementById('archiveSelect');
+  archSel.addEventListener('change', function(){
+    if(archSel.value) openArchiveWorkout(archSel.value);
+    else { var p=document.getElementById('archivePanel'); p.style.display='none'; p.innerHTML=''; }
+  });
 
   document.getElementById('calPrev').addEventListener('click',function(){
     calM--;if(calM<0){calM=11;calY--;}renderCal();
@@ -635,6 +737,7 @@ document.addEventListener('DOMContentLoaded',function(){
       workouts         = Array.isArray(data) ? data : (data.active   || []);
       archivedWorkouts = Array.isArray(data) ? []   : (data.archived || []);
       renderCards();
+      populateArchiveSelect();
     })
     .catch(function(){workouts=[];archivedWorkouts=[];renderCards();});
 
