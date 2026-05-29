@@ -1,0 +1,249 @@
+{
+  "active": [
+    {
+      "id": "audra-full-body-a",
+      "name": "Full Body A",
+      "type": "lower",
+      "typeLabel": "Full body",
+      "blocks": [
+        {
+          "title": "Block 1 — Lower body (straight sets)",
+          "rest": "60s rest between sets",
+          "note": "3 sets — focus on form over speed, every rep controlled",
+          "exercises": [
+            {
+              "name": "Goblet squat",
+              "sets": "3 × 10–12",
+              "note": "8–10 lb DB to start",
+              "tip": "Hold DB at chest. Feet shoulder width, toes slightly out. Sit down between your heels, elbows inside knees at the bottom. Drive through full foot to stand."
+            },
+            {
+              "name": "Glute bridge",
+              "sets": "3 × 15",
+              "note": "Bodyweight or light DB across hips",
+              "tip": "Feet flat, drive through heels. Squeeze glutes hard at the top and hold 1 second. Don't let your lower back take over — it's a glute exercise."
+            }
+          ]
+        },
+        {
+          "title": "Block 2 — Full body circuit",
+          "rest": "60s between rounds",
+          "note": "2 rounds — move at your own pace",
+          "exercises": [
+            {
+              "name": "Side step lunge",
+              "sets": "2 × 8 per side",
+              "note": "Bodyweight",
+              "tip": "Big lateral step, push hips back as you sink. Keep the stepping foot fully flat on the floor. Return to center before the next rep."
+            },
+            {
+              "name": "Resistance band hip abduction",
+              "sets": "2 × 15 per side",
+              "note": "Band just above knees, standing",
+              "tip": "Stand on one foot, slight knee bend. Lift other leg out to the side against the band. Control the return — don't let it snap back."
+            },
+            {
+              "name": "Dead bug",
+              "sets": "2 × 6 per side",
+              "note": "Slow — quality over quantity",
+              "tip": "Lie on back, arms up, knees at 90°. Lower opposite arm and leg toward floor without letting your lower back lift. Exhale on the way down."
+            }
+          ]
+        },
+        {
+          "title": "Yoga finish",
+          "rest": "No rest — flow at your own pace",
+          "note": "5–10 minutes",
+          "exercises": [
+            {
+              "name": "Yoga flow",
+              "sets": "5–10 min",
+              "note": "Lower body focus — hip flexors, hamstrings, glutes",
+              "tip": "Good options: low lunge, pigeon pose, supine figure-four, legs up the wall. Let the body open up after the loading work."
+            }
+          ]
+        }
+      ],
+      "progression": "When 3 × 12 goblet squats and 3 × 15 bridges feel comfortable, add 5 lbs. On the circuit, add 1–2 reps per exercise before increasing resistance."
+    },
+    {
+      "id": "audra-full-body-b",
+      "name": "Full Body B",
+      "type": "upper",
+      "typeLabel": "Full body",
+      "blocks": [
+        {
+          "title": "Block 1 — Push & pull (straight sets)",
+          "rest": "60s rest between sets",
+          "note": "3 sets — pairing push and pull keeps it balanced",
+          "exercises": [
+            {
+              "name": "Incline or wall push-up",
+              "sets": "3 × 8–12",
+              "note": "Wall = easier / bench incline = harder / floor = hardest",
+              "tip": "Start where you can do 8 clean reps. Body in a straight line, elbows at 45° from torso. Progress toward floor push-ups over time."
+            },
+            {
+              "name": "Single-arm DB row",
+              "sets": "3 × 10 per side",
+              "note": "8–10 lb DB",
+              "tip": "Brace one hand on bench. Let shoulder blade protract at the bottom, pull elbow back and up. Feel the back work, not just the arm."
+            }
+          ]
+        },
+        {
+          "title": "Block 2 — Shoulder & band circuit",
+          "rest": "60s between rounds",
+          "note": "2 rounds",
+          "exercises": [
+            {
+              "name": "DB lateral raise",
+              "sets": "2 × 12",
+              "note": "5 lb DBs",
+              "tip": "Lead with elbows, slight forward lean. Raise to shoulder height — no higher. Slow on the way down."
+            },
+            {
+              "name": "Resistance band pull-apart",
+              "sets": "2 × 15",
+              "note": "",
+              "tip": "Arms straight out front, pull band to chest. Slow controlled return. Great for posture and shoulder health."
+            },
+            {
+              "name": "Bird-dog",
+              "sets": "2 × 8 per side",
+              "note": "Hold 2 seconds",
+              "tip": "On all fours. Opposite arm and leg, extend slowly and hold. Hips stay level. Think long — reach through fingertips and heel."
+            }
+          ]
+        },
+        {
+          "title": "Yoga finish",
+          "rest": "No rest — flow at your own pace",
+          "note": "5–10 minutes",
+          "exercises": [
+            {
+              "name": "Yoga flow",
+              "sets": "5–10 min",
+              "note": "Upper body focus — chest, shoulders, spine",
+              "tip": "Good options: cat-cow, thread the needle, chest opener, seated twist, child's pose."
+            }
+          ]
+        }
+      ],
+      "progression": "Progress push-ups from wall → incline bench → floor as strength builds. On rows, add 5 lbs when 3 × 10 feels controlled."
+    },
+    {
+      "id": "audra-quick-flow",
+      "name": "Quick Flow",
+      "type": "lower",
+      "typeLabel": "Full body",
+      "blocks": [
+        {
+          "title": "Movement circuit",
+          "rest": "Rest when you need to",
+          "note": "1–2 rounds — 20–25 min total including yoga finish",
+          "exercises": [
+            {
+              "name": "Bodyweight squat",
+              "sets": "1–2 × 15",
+              "note": "",
+              "tip": "Feet shoulder width, arms out front for balance. Sit back and down. Easy pace."
+            },
+            {
+              "name": "Glute bridge",
+              "sets": "1–2 × 15",
+              "note": "Bodyweight",
+              "tip": "Drive through heels, squeeze at the top. Slow and deliberate."
+            },
+            {
+              "name": "Incline push-up",
+              "sets": "1–2 × 8–10",
+              "note": "Hands on bench",
+              "tip": "Controlled descent, full press. Stop before form breaks."
+            },
+            {
+              "name": "Side-lying clam shell",
+              "sets": "1–2 × 12 per side",
+              "note": "Band optional",
+              "tip": "Hips stacked. Open the top knee like a clam, hold 1 second. Keep hips still."
+            },
+            {
+              "name": "Dead bug",
+              "sets": "1–2 × 6 per side",
+              "note": "",
+              "tip": "Slow and deliberate. Lower back stays flat against the floor throughout."
+            }
+          ]
+        },
+        {
+          "title": "Yoga finish",
+          "rest": "No rest — this is the main event",
+          "note": "10–15 minutes — longer flow today",
+          "exercises": [
+            {
+              "name": "Yoga flow",
+              "sets": "10–15 min",
+              "note": "Full body — your practice",
+              "tip": "Sun salutations, standing poses, floor work — whatever feels right today."
+            }
+          ]
+        }
+      ],
+      "progression": "When 2 rounds feels easy and you finish with energy left, try adding one more exercise to the circuit."
+    },
+    {
+      "id": "audra-stretch-strengthen",
+      "name": "Stretch & Strengthen",
+      "type": "lower",
+      "typeLabel": "Recovery & core",
+      "blocks": [
+        {
+          "title": "Stability & core",
+          "rest": "Minimal rest — slow deliberate pace",
+          "note": "2 rounds — PT-style, quality over everything",
+          "exercises": [
+            {
+              "name": "Bird-dog",
+              "sets": "2 × 8 per side",
+              "note": "Hold 3 seconds",
+              "tip": "On all fours. Extend opposite arm and leg. Hold at the top. Hips perfectly level. Breathe steadily through the hold."
+            },
+            {
+              "name": "Dead bug",
+              "sets": "2 × 8 per side",
+              "note": "Slow — exhale on every rep",
+              "tip": "Lower back presses into the floor the whole time. If it lifts, reduce the range of motion."
+            },
+            {
+              "name": "Side-lying clam shell",
+              "sets": "2 × 15 per side",
+              "note": "Resistance band above knees",
+              "tip": "Hips stacked. Open knee against band, hold 1 second. Don't let the pelvis rock back."
+            },
+            {
+              "name": "Boat pose",
+              "sets": "2 × 3 holds",
+              "note": "20–30 sec each",
+              "tip": "Seated, lean back, legs lifted, arms forward. Keep chest tall. Bend knees to make it easier."
+            }
+          ]
+        },
+        {
+          "title": "Yoga finish",
+          "rest": "No rest — flow into it",
+          "note": "10–15 minutes — this is the main event today",
+          "exercises": [
+            {
+              "name": "Yoga flow",
+              "sets": "10–15 min",
+              "note": "Full body restorative",
+              "tip": "Pigeon, supine twist, figure-four, legs up the wall, savasana."
+            }
+          ]
+        }
+      ],
+      "progression": "Progression here is longer holds and better form. When 2 rounds feels easy, add a third. Never add load to this session."
+    }
+  ],
+  "archived": []
+}
