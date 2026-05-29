@@ -13,7 +13,7 @@
           "exercises": [
             {
               "name": "Flat or incline DB bench press",
-              "sets": "3 sets — 52lb × 7–9 / 45lb × 10 / 35lb × 15",
+              "sets": "52lb × 7–9 / 45lb × 10 / 35lb × 15",
               "note": "Pick flat or incline each session. Push to near-failure on each set.",
               "tip": "Full ROM. Touch chest, lock out at top. Control the descent — 2 seconds down."
             }
@@ -22,23 +22,23 @@
         {
           "title": "Block 2 — Shoulder circuit",
           "rest": "Rest 60s between rounds",
-          "note": "2 rounds — move from one exercise to the next with minimal rest",
+          "note": "2 rounds — move exercise to exercise, rest at end of round",
           "exercises": [
             {
               "name": "Seated DB overhead press",
-              "sets": "2 rounds × 10–12",
+              "sets": "2 × 10–12",
               "note": "",
               "tip": "Seated on bench, core braced. Press to full lockout, lower controlled."
             },
             {
               "name": "DB lateral raise",
-              "sets": "2 rounds × 12–15",
+              "sets": "2 × 12–15",
               "note": "",
               "tip": "Lead with elbows, slight forward lean. Pause briefly at the top."
             },
             {
               "name": "Plate circles",
-              "sets": "2 rounds × 10 each direction",
+              "sets": "2 × 10 each direction",
               "note": "25 lb plate",
               "tip": "Arms extended, draw big slow circles. Keep shoulders packed down."
             }
@@ -51,19 +51,19 @@
           "exercises": [
             {
               "name": "Push-up variation",
-              "sets": "2 rounds × max reps",
+              "sets": "2 × max reps",
               "note": "Rotate: wide grip / close grip / decline / archer",
               "tip": "Pick a variation that challenges you. Stop 1–2 reps before form breaks."
             },
             {
               "name": "DB chest fly",
-              "sets": "2 rounds × 15–20",
+              "sets": "2 × 15–20",
               "note": "20 lb DBs",
               "tip": "Slight bend in elbows throughout. Feel the stretch at the bottom, squeeze at top."
             },
             {
               "name": "DB skull crusher",
-              "sets": "2 rounds × 12",
+              "sets": "2 × 12",
               "note": "",
               "tip": "Upper arms vertical, lower to temples. Slow and controlled."
             }
@@ -98,19 +98,19 @@
           "exercises": [
             {
               "name": "DB rear delt fly (prone on bench)",
-              "sets": "2 rounds × 12–15",
+              "sets": "2 × 12–15",
               "note": "",
               "tip": "Face down on incline bench. Lead with elbows, squeeze shoulder blades together at top."
             },
             {
               "name": "Resistance band pull-apart",
-              "sets": "2 rounds × 20",
+              "sets": "2 × 20",
               "note": "",
               "tip": "Arms straight, pull to full stretch. Slow controlled return — don't let it snap back."
             },
             {
               "name": "Resistance band pulldown",
-              "sets": "2 rounds × 15",
+              "sets": "2 × 15",
               "note": "Anchor band overhead",
               "tip": "Drive elbows down and back. Squeeze lats at the bottom of each rep."
             }
@@ -123,19 +123,19 @@
           "exercises": [
             {
               "name": "Incline DB curl",
-              "sets": "2 rounds × 10–12",
+              "sets": "2 × 10–12",
               "note": "",
               "tip": "Arms hanging on incline bench — full bicep stretch at the bottom. No swinging."
             },
             {
               "name": "DB hammer curl",
-              "sets": "2 rounds × 10–12",
+              "sets": "2 × 10–12",
               "note": "",
               "tip": "Neutral grip. Slow on the way down — 3 seconds. Hits brachialis for arm thickness."
             },
             {
               "name": "Farmer carry",
-              "sets": "2 rounds × 30–40 steps",
+              "sets": "2 × 30–40 steps",
               "note": "Heaviest DBs available",
               "tip": "Stand tall, shoulders packed back and down. Don't let the weight pull you sideways."
             }
@@ -157,64 +157,52 @@
           "exercises": [
             {
               "name": "Tempo goblet squat",
-              "sets": "Set 1: 30lb × 12 / Set 2: 40lb × 10 / Set 3: 50lb × 8",
-              "note": "3 seconds down, 1 second pause at bottom, drive up",
+              "sets": "30lb × 12 / 40lb × 10 / 50lb × 8",
+              "note": "3 sec down, 1 sec pause at bottom, drive up",
               "tip": "Elbows inside knees at the bottom. Drive through the full foot on the way up. The tempo is the work — don't rush it."
             }
           ]
         },
         {
-          "title": "Block 2 — Split squat circuit",
+          "title": "Block 2 — Single-leg circuit",
           "rest": "Rest 60s between rounds",
-          "note": "2 rounds — alternate legs within each exercise",
+          "note": "2 rounds — unilateral then bilateral to give stabilizers a breather",
           "exercises": [
             {
               "name": "Bulgarian split squat",
-              "sets": "2 rounds × 8 per leg",
+              "sets": "2 × 8 per leg",
               "note": "Start unweighted, add 15 lb DBs when form is solid",
-              "tip": "Rear foot on bench. Front shin stays vertical. Lower slowly — 3 seconds down. This will humble you."
-            },
-            {
-              "name": "Front foot elevated split squat",
-              "sets": "2 rounds × 10 per leg",
-              "note": "Elevate front foot on a plate or step",
-              "tip": "Elevation increases range of motion and quad stretch. Keep torso upright."
+              "tip": "Rear foot on bench. Front shin stays vertical. Lower slowly — 3 seconds down."
             },
             {
               "name": "Side step lunge",
-              "sets": "2 rounds × 10 per side",
+              "sets": "2 × 10 per side",
               "note": "",
-              "tip": "Big lateral step, push hips back as you sink. Keep the stepping foot fully flat on the floor."
+              "tip": "Big lateral step, push hips back as you sink. Keep stepping foot fully flat. Bilateral — gives legs a break from balance demand."
             }
           ]
         },
         {
           "title": "Block 3 — Lunge & core circuit",
           "rest": "Rest 60s between rounds",
-          "note": "2 rounds",
+          "note": "2 rounds — fresher legs now, earn the bird-dogs",
           "exercises": [
             {
               "name": "Medicine ball lunge",
-              "sets": "2 rounds × 10 per leg",
+              "sets": "2 × 10 per leg",
               "note": "",
               "tip": "Hold med ball at chest. Step forward, lower back knee toward floor. Drive through front heel to return."
             },
             {
-              "name": "Curtsy reverse lunge",
-              "sets": "2 rounds × 10 per leg",
-              "note": "",
-              "tip": "Step back and cross behind the standing leg. Targets glute med hard. Keep hips square and torso tall."
-            },
-            {
               "name": "Bird-dog",
-              "sets": "2 rounds × 10 per side",
-              "note": "",
-              "tip": "On all fours. Extend opposite arm and leg simultaneously, hold 2 seconds. Keep hips level — don't rotate."
+              "sets": "2 × 10 per side",
+              "note": "Hold 2 seconds at full extension",
+              "tip": "On all fours. Opposite arm and leg. Keep hips level — don't rotate. Active recovery feel after the lunges."
             }
           ]
         }
       ],
-      "progression": "On the goblet squat ladder, add 5 lbs to each set when Set 3 at 50 lbs feels controlled. On Bulgarians, add weight when 8 reps per leg is clean and steady."
+      "progression": "On the goblet squat ladder, add 5 lbs to each set when Set 3 at 50 lbs feels solid. On Bulgarians, add weight when 8 reps per leg is clean and balanced."
     },
     {
       "id": "lower-hinge",
@@ -230,7 +218,7 @@
             {
               "name": "Single-leg DB RDL",
               "sets": "3 × 8 per leg",
-              "note": "Challenging weight — use DBs in both hands",
+              "note": "Challenging weight — DBs in both hands",
               "tip": "Soft bend in standing knee. Hinge until you feel a deep hamstring pull. Don't chase depth with a rounded back — the stretch is the goal, not the range."
             }
           ]
@@ -242,19 +230,19 @@
           "exercises": [
             {
               "name": "DB hip thrust (bench)",
-              "sets": "2 rounds × 12",
-              "note": "",
-              "tip": "Upper back on bench, DB across hips. Drive through heels. Full glute squeeze and hold 1 second at lockout."
+              "sets": "2 × 12",
+              "note": "DB or heavy bag across hips",
+              "tip": "Upper back on bench. Drive through heels. Full glute squeeze — hold 1 second at lockout."
             },
             {
               "name": "Medicine ball slam",
-              "sets": "2 rounds × 8",
+              "sets": "2 × 8",
               "note": "",
               "tip": "Full extension overhead, violent exhale on the slam. Hinge to pick it up — don't round your back on the retrieve."
             },
             {
               "name": "Resistance band hip side step",
-              "sets": "2 rounds × 15 per side",
+              "sets": "2 × 15 per side",
               "note": "Band around ankles or just above knees",
               "tip": "Stay in a slight squat throughout. Keep tension in the band — don't let feet come together."
             }
@@ -267,27 +255,184 @@
           "exercises": [
             {
               "name": "Bird-dog",
-              "sets": "2 rounds × 10 per side",
-              "note": "",
-              "tip": "Opposite arm and leg, hold 2 seconds at full extension. Hips stay level — imagine a glass of water on your lower back."
+              "sets": "2 × 10 per side",
+              "note": "Hold 2 seconds",
+              "tip": "Opposite arm and leg. Hips stay level — imagine a glass of water on your lower back."
             },
             {
               "name": "Plate circles",
-              "sets": "2 rounds × 10 each direction",
+              "sets": "2 × 10 each direction",
               "note": "25 lb plate",
-              "tip": "Arms extended at shoulder height. Slow deliberate circles — this is shoulder and core stability work."
+              "tip": "Arms extended at shoulder height. Slow deliberate circles — shoulder and core stability work."
             },
             {
               "name": "Single-leg calf raise",
-              "sets": "2 rounds × 15 per leg",
+              "sets": "2 × 15 per leg",
               "note": "Hold a DB for load",
               "tip": "Full range — don't bounce at the bottom. Use a step edge if available."
             }
           ]
         }
       ],
-      "progression": "Single-leg RDL is the anchor movement — once 3 × 8 per leg is controlled and balanced, add weight. On hip thrusts, add load as soon as you can maintain the 1-second lockout hold."
+      "progression": "Single-leg RDL is the anchor — once 3 × 8 per leg is controlled and balanced, add weight. On hip thrusts, add load as soon as you can maintain the 1-second lockout hold."
     }
   ],
-  "archived": []
+  "archived": [
+    {
+      "id": "quick-legs",
+      "name": "Quick Legs",
+      "type": "lower",
+      "typeLabel": "Lower body",
+      "blocks": [
+        {
+          "title": "Warm-up flow",
+          "rest": "No rest — move straight through",
+          "note": "Single circuit, done once as a warm-up",
+          "exercises": [
+            {
+              "name": "Jumping jacks",
+              "sets": "1 × 30",
+              "note": "",
+              "tip": "Easy pace. Get the blood moving and joints warm before loading anything."
+            },
+            {
+              "name": "Bodyweight goblet squat",
+              "sets": "1 × 15",
+              "note": "",
+              "tip": "Hands clasped at chest. Full depth, controlled. Groove the pattern before adding weight."
+            }
+          ]
+        },
+        {
+          "title": "Main circuit",
+          "rest": "Rest 60s at end of each round",
+          "note": "2 rounds — keep rest between exercises short, rest fully between rounds",
+          "exercises": [
+            {
+              "name": "Weighted calf raise",
+              "sets": "2 × 20",
+              "note": "Hold 25–30 lb DB in each hand",
+              "tip": "Stand tall, full range of motion. Don't bounce at the bottom — pause briefly, then drive up. Drop reps and go heavier as you get stronger."
+            },
+            {
+              "name": "Side-lying hip abduction",
+              "sets": "2 × 15 per side",
+              "note": "Or clam shells with resistance band",
+              "tip": "Keep hips stacked, don't roll back. Slow controlled lift — feel the glute med working. Band adds meaningful resistance to clam shells."
+            },
+            {
+              "name": "Sumo squat",
+              "sets": "2 × 20",
+              "note": "Bodyweight or light DB held at chest",
+              "tip": "Wide stance, toes turned out 45°. Sit straight down between your heels. Targets inner thighs and glutes differently than a goblet squat."
+            },
+            {
+              "name": "Side step squat",
+              "sets": "2 × 10 per side",
+              "note": "",
+              "tip": "Step out into a squat, bring feet together, repeat. Keep hips low throughout — don't stand up between steps."
+            },
+            {
+              "name": "Medicine ball lunge",
+              "sets": "2 × 10 per leg",
+              "note": "",
+              "tip": "Hold med ball at chest. Alternate legs. Drive through front heel to return. Keep torso tall."
+            },
+            {
+              "name": "Glute bridge",
+              "sets": "2 × 20",
+              "note": "Load with DB or heavy bag across hips",
+              "tip": "Feet flat, drive through heels. Squeeze glutes hard at the top and hold 1 second. Don't hyperextend your lower back."
+            }
+          ]
+        },
+        {
+          "title": "Cool-down",
+          "rest": "No rest — flow through slowly",
+          "note": "Done once",
+          "exercises": [
+            {
+              "name": "Hip rotation stretch",
+              "sets": "1 × 60 sec per side",
+              "note": "",
+              "tip": "Figure-four position on your back, or standing hip circles. Breathe into each rep. Let the hips open up after all that loading."
+            }
+          ]
+        }
+      ],
+      "progression": "This is a conditioning and volume session — progression is adding load to calf raises and glute bridges first. When 2 rounds feels comfortable, add a third round to the main circuit."
+    },
+    {
+      "id": "core-back-pt",
+      "name": "Core / Back / PT",
+      "type": "lower",
+      "typeLabel": "Recovery & core",
+      "blocks": [
+        {
+          "title": "Block 1 — Anti-rotation & stability",
+          "rest": "Minimal rest between exercises, 60s between rounds",
+          "note": "2 rounds — slow and deliberate, this is nervous system work",
+          "exercises": [
+            {
+              "name": "Resistance band arm-extended hold",
+              "sets": "2 × 8 holds per side",
+              "note": "Hold 5 seconds each — resist rotation",
+              "tip": "Band anchored at chest height. Extend arms straight out, rotate away from anchor. The goal is to resist — don't let the band pull you. Core stays braced throughout."
+            },
+            {
+              "name": "Bird-dog",
+              "sets": "2 × 8 per side",
+              "note": "Hold 3 seconds at full extension",
+              "tip": "On all fours. Opposite arm and leg, extend slowly. Hold at the top — don't rush the hold. Hips stay perfectly level. Quality over quantity here."
+            },
+            {
+              "name": "Dead bug",
+              "sets": "2 × 8 per side",
+              "note": "Slow and controlled",
+              "tip": "Lie on back, arms up, knees at 90°. Lower opposite arm and leg toward floor without letting your lower back lift. Exhale on the way down. This is harder than it looks."
+            }
+          ]
+        },
+        {
+          "title": "Block 2 — Dynamic & lateral",
+          "rest": "60s between rounds",
+          "note": "2 rounds",
+          "exercises": [
+            {
+              "name": "Med ball wall throw",
+              "sets": "2 × 8 per side",
+              "note": "Rotational — stand perpendicular to wall",
+              "tip": "Load through the hips and core, not the arms. Throw from rotation, catch and control the rebound. Stand far enough that you're generating real power."
+            },
+            {
+              "name": "Clam shell side plank",
+              "sets": "2 × 8–10 per side",
+              "note": "Resistance band just above knees",
+              "tip": "Side plank position, then open top knee against the band. Keep hips stacked and high — don't let them sag. Glute med and obliques working together."
+            },
+            {
+              "name": "Boat pose hold",
+              "sets": "2 × 3 holds",
+              "note": "20–30 sec each hold",
+              "tip": "Seated, lean back, legs lifted, arms extended forward. Keep chest tall — don't collapse through the lower back. Breathe steadily. This earns the flow."
+            }
+          ]
+        },
+        {
+          "title": "Block 3 — Vinyasa flow cool-down",
+          "rest": "No rest — move with your breath",
+          "note": "2–3 rounds through the flow",
+          "exercises": [
+            {
+              "name": "Vinyasa flow",
+              "sets": "2–3 rounds",
+              "note": "Down dog → cobra → up dog → child's pose",
+              "tip": "Move with your breath — inhale to extend, exhale to fold. Don't rush. This is recovery, not performance. Let the spine decompress after all the core work."
+            }
+          ]
+        }
+      ],
+      "progression": "This session is about quality of movement, not load. Progression means longer holds, better form, and more control — not heavier weights. Add a third round to Blocks 1 and 2 when 2 rounds feels easy."
+    }
+  ]
 }
