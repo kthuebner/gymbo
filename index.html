@@ -65,7 +65,7 @@ body {
 
 /* ── Tab bar ── */
 .tab-bar {
-  display:grid; grid-template-columns:1fr 1fr 1fr;
+  display:grid; grid-template-columns:1fr 1fr 1fr 1fr;
   background:var(--surface); border-bottom:1px solid var(--border);
   position:sticky; top:0; z-index:50;
 }
@@ -221,6 +221,57 @@ body {
 .video-title { font-size:14px; font-weight:500; color:var(--text); margin-bottom:4px; line-height:1.3; }
 .video-desc  { font-size:12px; color:var(--muted); line-height:1.4; }
 
+/* ── Randomizer ── */
+.rand-filters { display:grid; grid-template-columns:repeat(5,1fr); gap:6px; margin-bottom:14px; }
+.rand-filter {
+  padding:8px 4px; background:var(--surface); border:1px solid var(--border);
+  border-radius:8px; font-family:var(--mono); font-size:10px; letter-spacing:.06em;
+  text-transform:uppercase; color:var(--dim); cursor:pointer;
+  transition:all .15s; text-align:center; -webkit-tap-highlight-color:transparent;
+}
+.rand-filter:active { opacity:.7; }
+.rand-filter.active { background:var(--accent); border-color:var(--accent); color:#fff; }
+.rand-spin-btn {
+  width:100%; padding:16px 0; background:var(--accent); border:none;
+  border-radius:var(--radius); color:#fff; font-family:var(--mono);
+  font-size:14px; letter-spacing:.1em; text-transform:uppercase;
+  cursor:pointer; transition:all .15s; -webkit-tap-highlight-color:transparent;
+  margin-bottom:16px;
+}
+.rand-spin-btn:active { opacity:.8; }
+.rand-spin-btn:disabled { opacity:.5; cursor:default; }
+.rand-result {
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--radius); padding:20px; text-align:center;
+  min-height:140px; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; gap:8px;
+  transition:all .2s;
+}
+.rand-result.spinning .rand-name { opacity:.4; }
+.rand-ex-name {
+  font-size:24px; font-weight:700; color:var(--text);
+  line-height:1.2; transition:all .15s;
+}
+.rand-ex-muscle {
+  font-family:var(--mono); font-size:10px; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--accent); margin-bottom:4px;
+}
+.rand-ex-desc {
+  font-size:13px; color:var(--muted); line-height:1.5;
+  max-width:380px;
+}
+.rand-empty {
+  font-family:var(--mono); font-size:12px; color:var(--dim);
+}
+.rand-again {
+  margin-top:12px; padding:9px 20px; background:none;
+  border:1px solid var(--border2); border-radius:8px;
+  color:var(--muted); font-family:var(--mono); font-size:11px;
+  cursor:pointer; letter-spacing:.06em; transition:all .15s;
+  -webkit-tap-highlight-color:transparent;
+}
+.rand-again:hover { color:var(--text); border-color:var(--accent); }
+
 /* ── Toast ── */
 .toast { position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(60px); background:var(--raised); border:1px solid var(--border2); border-radius:8px; padding:11px 20px; font-family:var(--mono); font-size:12px; color:var(--text); opacity:0; transition:all .3s; pointer-events:none; white-space:nowrap; z-index:999; }
 .toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
@@ -239,6 +290,7 @@ body {
   <button class="tab-btn active" data-tab="kevin">Kevin</button>
   <button class="tab-btn" data-tab="audra">Audra</button>
   <button class="tab-btn" data-tab="videos">Videos</button>
+  <button class="tab-btn" data-tab="random">Random</button>
 </div>
 
 <!-- ════════════════════════════════════
@@ -338,6 +390,24 @@ body {
     <button class="qbtn" data-type="walk"><div class="qdot" style="background:var(--c-walk)"></div><span>Walk / Other</span></button>
   </div>
 
+  <div class="panel">
+    <span class="slabel">Rest timer</span>
+    <div class="timer-display" id="audraTimerDisplay">01:00</div>
+    <div class="timer-row">
+      <button class="preset-btn active" data-secs="60" data-timer="audra">60s</button>
+      <button class="preset-btn" data-secs="90" data-timer="audra">90s</button>
+      <button class="preset-btn" data-secs="1200" data-timer="audra">20m</button>
+      <div class="custom-wrap">
+        <input type="number" id="audraCustomTime" min="1" max="7200" placeholder="—"/>
+        <span>sec</span>
+      </div>
+    </div>
+    <div class="ctrl-row">
+      <button class="ctrl-btn start" id="audraStartPauseBtn">Start</button>
+      <button class="ctrl-btn" id="audraResetBtn">Reset</button>
+    </div>
+  </div>
+
   <div class="divider"></div>
 
   <span class="slabel">Past workouts</span>
@@ -420,6 +490,31 @@ body {
       </div>
     </div>
 
+  </div>
+</div>
+
+<!-- ════════════════════════════════════
+     RANDOM TAB
+════════════════════════════════════ -->
+<div class="tab-panel" id="tab-random">
+  <header class="app-header">
+    <span class="app-title">Exercise Randomizer</span>
+    <span class="app-date" id="randomDate"></span>
+  </header>
+
+  <span class="slabel">Filter by category</span>
+  <div class="rand-filters">
+    <button class="rand-filter active" data-cat="all">Wild Card</button>
+    <button class="rand-filter" data-cat="upper">Upper</button>
+    <button class="rand-filter" data-cat="lower">Lower</button>
+    <button class="rand-filter" data-cat="core">Core</button>
+    <button class="rand-filter" data-cat="full">Full Body</button>
+  </div>
+
+  <button class="rand-spin-btn" id="randSpinBtn">&#9654; Spin</button>
+
+  <div class="rand-result" id="randResult">
+    <div class="rand-empty">Hit spin to get a random exercise</div>
   </div>
 </div>
 
@@ -734,7 +829,65 @@ function openArchiveWorkout(u, id){
 }
 
 /* ════════════════════════════════════
-   TIMER
+   TIMER FACTORY (shared by both tabs)
+════════════════════════════════════ */
+function makeTimer(displayId, startBtnId, resetBtnId, customId){
+  var total=60, remain=60, running=false, tick=null, actx=null;
+  function p2(n){return ('0'+n).slice(-2);}
+  function fmt(s){return p2(Math.floor(s/60))+':'+p2(s%60);}
+  function render(){document.getElementById(displayId).textContent=fmt(remain);}
+  function setBtn(on){
+    var b=document.getElementById(startBtnId);
+    if(on){b.textContent='Pause';b.classList.add('pause');b.classList.remove('start');}
+    else  {b.textContent='Start';b.classList.remove('pause');b.classList.add('start');}
+  }
+  function done(){
+    setBtn(false);
+    var el=document.getElementById(displayId);
+    el.classList.add('flash');
+    setTimeout(function(){el.classList.remove('flash');},800);
+    try{
+      if(!actx)actx=new(window.AudioContext||window.webkitAudioContext)();
+      [0,0.22,0.44].forEach(function(t){
+        var o=actx.createOscillator(),g=actx.createGain();
+        o.connect(g);g.connect(actx.destination);
+        o.type='square';o.frequency.value=880;
+        g.gain.setValueAtTime(0.25,actx.currentTime+t);
+        g.gain.exponentialRampToValueAtTime(0.001,actx.currentTime+t+0.18);
+        o.start(actx.currentTime+t);o.stop(actx.currentTime+t+0.2);
+      });
+    }catch(e){}
+    setTimeout(function(){remain=total;render();},1600);
+  }
+  function stop(){clearInterval(tick);running=false;}
+  function start(){
+    if(running)return;
+    if(remain<=0)remain=total;
+    running=true;setBtn(true);
+    tick=setInterval(function(){remain--;render();if(remain<=0){clearInterval(tick);running=false;done();}},1000);
+  }
+  function pause(){stop();setBtn(false);}
+  return {
+    render:render,
+    toggle:function(){running?pause():start();},
+    reset:function(){stop();remain=total;render();setBtn(false);},
+    setPreset:function(secs,btn,allBtns){
+      stop();total=remain=secs;render();
+      if(allBtns)allBtns.forEach(function(b){b.classList.remove('active');});
+      btn.classList.add('active');
+      if(customId)document.getElementById(customId).value='';
+    },
+    setCustom:function(val,allBtns){
+      var v=parseInt(val);
+      if(!v||v<=0)return;
+      stop();total=remain=v;render();
+      if(allBtns)allBtns.forEach(function(b){b.classList.remove('active');});
+    }
+  };
+}
+
+/* ════════════════════════════════════
+   TIMER (Kevin — kept for direct wiring)
 ════════════════════════════════════ */
 function fmtT(s){return p2(Math.floor(s/60))+':'+p2(s%60);}
 function renderTimer(){document.getElementById('timerDisplay').textContent=fmtT(tRemain);}
@@ -806,6 +959,54 @@ function loadWorkouts(u, file){
 }
 
 /* ════════════════════════════════════
+   RANDOMIZER
+════════════════════════════════════ */
+var allExercises = [];
+var randCategory = 'all';
+var randSpinning = false;
+
+function loadExercises(){
+  fetch('exercises.json')
+    .then(function(r){return r.json();})
+    .then(function(data){ allExercises=data; })
+    .catch(function(){ allExercises=[]; });
+}
+
+function spinRandom(){
+  if(randSpinning) return;
+  var pool = randCategory==='all'
+    ? allExercises
+    : allExercises.filter(function(e){ return e.category===randCategory; });
+  if(!pool.length){
+    document.getElementById('randResult').innerHTML='<div class="rand-empty">No exercises in this category yet.</div>';
+    return;
+  }
+  randSpinning=true;
+  var btn=document.getElementById('randSpinBtn');
+  btn.disabled=true; btn.textContent='Spinning...';
+  var result=document.getElementById('randResult');
+  result.innerHTML='<div class="rand-ex-name" id="randSpinName">—</div>';
+  var ticks=0; var maxTicks=18;
+  var interval=setInterval(function(){
+    var r=pool[Math.floor(Math.random()*pool.length)];
+    document.getElementById('randSpinName').textContent=r.name;
+    ticks++;
+    if(ticks>=maxTicks){
+      clearInterval(interval);
+      var final=pool[Math.floor(Math.random()*pool.length)];
+      result.innerHTML=
+        '<div class="rand-ex-muscle">'+final.muscle+'</div>'+
+        '<div class="rand-ex-name">'+final.name+'</div>'+
+        '<div class="rand-ex-desc">'+final.desc+'</div>'+
+        '<button class="rand-again" id="randAgain">Spin again</button>';
+      document.getElementById('randAgain').addEventListener('click', spinRandom);
+      btn.disabled=false; btn.textContent='\u25B6 Spin';
+      randSpinning=false;
+    }
+  }, 80);
+}
+
+/* ════════════════════════════════════
    BOOT
 ════════════════════════════════════ */
 document.addEventListener('DOMContentLoaded', function(){
@@ -863,9 +1064,38 @@ document.addEventListener('DOMContentLoaded', function(){
   /* Load data */
   loadWorkouts('kevin','workouts.json');
   loadWorkouts('audra','audra-workouts.json');
+  loadExercises();
   renderCal('kevin');
   renderCal('audra');
   renderTimer();
+
+  /* Audra timer */
+  var audraTimer = makeTimer('audraTimerDisplay','audraStartPauseBtn','audraResetBtn','audraCustomTime');
+  document.querySelectorAll('.preset-btn[data-timer="audra"]').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      audraTimer.setPreset(parseInt(btn.getAttribute('data-secs')),btn,
+        document.querySelectorAll('.preset-btn[data-timer="audra"]'));
+    });
+  });
+  document.getElementById('audraStartPauseBtn').addEventListener('click', audraTimer.toggle);
+  document.getElementById('audraResetBtn').addEventListener('click', audraTimer.reset);
+  document.getElementById('audraCustomTime').addEventListener('change', function(){
+    audraTimer.setCustom(document.getElementById('audraCustomTime').value,
+      document.querySelectorAll('.preset-btn[data-timer="audra"]'));
+  });
+
+  /* Randomizer */
+  document.querySelectorAll('.rand-filter').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      document.querySelectorAll('.rand-filter').forEach(function(b){b.classList.remove('active');});
+      btn.classList.add('active');
+      randCategory=btn.getAttribute('data-cat');
+    });
+  });
+  document.getElementById('randSpinBtn').addEventListener('click', spinRandom);
+
+  /* Random tab date */
+  document.getElementById('randomDate').textContent=dateStr;
 });
 </script>
 </body>
