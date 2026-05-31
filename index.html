@@ -5,80 +5,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Workout Tracker</title>
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-/* ── Theme variables ── */
+*, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
 :root {
-  --bg:       #0e0e0e;
-  --surface:  #161616;
-  --raised:   #1d1d1d;
-  --border:   #272727;
-  --border2:  #383838;
-  --text:     #e4e4e4;
-  --muted:    #888;
-  --dim:      #555;
-  --faint:    #222;
-  --accent:   #cc2200;
-  --accent-dim:#7a1500;
-  --accent-glow:rgba(204,34,0,0.28);
-  --c-upper:  #cc2200;
-  --c-lower:  #d4600a;
-  --c-climb:  #1fa64a;
-  --c-cardio: #c0187a;
-  --c-yoga:   #6a2fb0;
-  --c-walk:   #1a6fcf;
-  --radius:   10px;
-  --mono:     'Courier New', monospace;
-  --ui:       'Helvetica Neue', 'Segoe UI', sans-serif;
+  --bg:#0e0e0e; --surface:#161616; --raised:#1d1d1d;
+  --border:#272727; --border2:#383838;
+  --text:#e4e4e4; --muted:#888; --dim:#555; --faint:#222;
+  --accent:#cc2200; --accent-dim:#7a1500; --accent-glow:rgba(204,34,0,0.28);
+  --c-upper:#cc2200; --c-lower:#d4600a; --c-climb:#1fa64a;
+  --c-cardio:#c0187a; --c-yoga:#6a2fb0; --c-walk:#1a6fcf;
+  --radius:10px; --mono:'Courier New',monospace; --ui:'Helvetica Neue','Segoe UI',sans-serif;
 }
-
-/* Audra teal theme override */
 body.theme-audra {
-  --accent:      #2ab5a0;
-  --accent-dim:  #1a7a6e;
-  --accent-glow: rgba(42,181,160,0.32);
-  --bg:          #071412;
-  --surface:     #0e2220;
-  --raised:      #162e2b;
-  --border:      #1e3d3a;
-  --border2:     #2a524e;
-  --text:        #e8f5f3;
-  --muted:       #8bbdb8;
-  --dim:         #4d8a84;
-  --faint:       #122624;
-  /* pastel versions of Kevin's activity colors */
-  --c-upper:     #e8735a;
-  --c-lower:     #e8973a;
-  --c-climb:     #4dbf72;
-  --c-cardio:    #d94f9a;
-  --c-yoga:      #9b6fd4;
-  --c-walk:      #4a9ee8;
+  --accent:#2ab5a0; --accent-dim:#1a7a6e; --accent-glow:rgba(42,181,160,0.32);
+  --bg:#071412; --surface:#0e2220; --raised:#162e2b;
+  --border:#1e3d3a; --border2:#2a524e;
+  --text:#e8f5f3; --muted:#8bbdb8; --dim:#4d8a84; --faint:#122624;
+  --c-upper:#e8735a; --c-lower:#e8973a; --c-climb:#4dbf72;
+  --c-cardio:#d94f9a; --c-yoga:#9b6fd4; --c-walk:#4a9ee8;
 }
-
 html { font-size:16px; }
-body {
-  background:var(--bg); color:var(--text);
-  font-family:var(--ui); min-height:100vh;
-  padding:0 0 80px; max-width:600px; margin:0 auto;
-  transition: background .3s, color .3s;
-}
+body { background:var(--bg); color:var(--text); font-family:var(--ui); min-height:100vh; padding:0 0 80px; max-width:600px; margin:0 auto; transition:background .3s; }
 
 /* ── Tab bar ── */
-.tab-bar {
-  display:grid; grid-template-columns:1fr 1fr 1fr 1fr;
-  background:var(--surface); border-bottom:1px solid var(--border);
-  position:sticky; top:0; z-index:50;
-}
-.tab-btn {
-  padding:14px 0; text-align:center;
-  font-family:var(--mono); font-size:11px; letter-spacing:.12em;
-  text-transform:uppercase; color:var(--dim);
-  background:none; border:none; cursor:pointer;
-  border-bottom:2px solid transparent;
-  transition:all .2s; -webkit-tap-highlight-color:transparent;
-}
-.tab-btn.active { color:var(--accent); border-bottom-color:var(--accent); }
-.tab-btn:hover:not(.active) { color:var(--text); }
+.tab-bar { display:grid; grid-template-columns:1fr 1fr 1fr 1fr; background:#1a1a1a; border-bottom:2px solid var(--border2); position:sticky; top:0; z-index:50; gap:1px; }
+.tab-btn { padding:16px 4px; text-align:center; font-family:var(--mono); font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); background:#1a1a1a; border:none; cursor:pointer; border-bottom:3px solid transparent; transition:all .2s; -webkit-tap-highlight-color:transparent; font-weight:500; }
+.tab-btn.active { color:#fff; background:#222; border-bottom-color:var(--accent); }
+.tab-btn:hover:not(.active) { color:var(--text); background:#1e1e1e; }
 
 /* ── Tab panels ── */
 .tab-panel { display:none; padding:16px 14px; }
@@ -94,23 +46,17 @@ body {
 
 /* ── Calendar ── */
 .cal-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
-.cal-month  { font-size:14px; font-weight:500; color:var(--text); }
-.cal-nav    { background:none; border:none; color:var(--dim); font-size:20px; cursor:pointer; padding:0 8px; line-height:1; -webkit-tap-highlight-color:transparent; }
+.cal-month { font-size:14px; font-weight:500; color:var(--text); }
+.cal-nav { background:none; border:none; color:var(--dim); font-size:20px; cursor:pointer; padding:0 8px; line-height:1; -webkit-tap-highlight-color:transparent; }
 .cal-nav:hover { color:var(--text); }
 .cal-dow { display:grid; grid-template-columns:repeat(7,1fr); gap:3px; margin-bottom:4px; }
 .cal-dow span { font-family:var(--mono); font-size:10px; color:var(--dim); text-align:center; }
 .cal-days { display:grid; grid-template-columns:repeat(7,1fr); gap:3px; width:100%; }
-.cal-day {
-  position:relative; width:100%; padding-bottom:100%;
-  border-radius:5px; border:1px solid transparent;
-  cursor:pointer; transition:all .12s;
-  user-select:none; -webkit-tap-highlight-color:transparent;
-  font-family:var(--mono); font-size:11px; color:var(--dim);
-}
+.cal-day { position:relative; width:100%; padding-bottom:100%; border-radius:5px; border:1px solid transparent; cursor:pointer; transition:all .12s; user-select:none; -webkit-tap-highlight-color:transparent; font-family:var(--mono); font-size:11px; color:#bbb; }
 .cal-day::after { content:attr(data-day); position:absolute; inset:0; display:flex; align-items:center; justify-content:center; }
-.cal-day:hover:not(.empty) { border-color:var(--border2); }
-.cal-day.today  { border-color:var(--border2); color:var(--text); }
-.cal-day.empty  { cursor:default; pointer-events:none; }
+.cal-day:hover:not(.empty) { border-color:var(--border2); color:#fff; }
+.cal-day.today { border:2px solid var(--accent); color:#fff; background:rgba(255,255,255,.05); box-shadow:inset 0 0 0 1px var(--accent-dim); }
+.cal-day.empty { cursor:default; pointer-events:none; color:#333; }
 .cal-day.act-upper  { background:var(--c-upper);  color:#fff; border-color:var(--c-upper);  }
 .cal-day.act-lower  { background:var(--c-lower);  color:#fff; border-color:var(--c-lower);  }
 .cal-day.act-climb  { background:var(--c-climb);  color:#fff; border-color:var(--c-climb);  }
@@ -119,6 +65,7 @@ body {
 .cal-day.act-walk   { background:var(--c-walk);   color:#fff; border-color:var(--c-walk);   }
 .cal-day.today.act-upper,.cal-day.today.act-lower,.cal-day.today.act-climb,
 .cal-day.today.act-cardio,.cal-day.today.act-yoga,.cal-day.today.act-walk { box-shadow:0 0 0 2px #fff3; }
+.cal-extras { position:absolute; bottom:1px; right:2px; font-size:8px; line-height:1; display:flex; gap:1px; pointer-events:none; }
 .streak-bar { margin-top:10px; padding-top:8px; border-top:1px solid var(--faint); display:flex; align-items:center; justify-content:space-between; }
 .streak-count { font-family:var(--mono); font-size:24px; font-weight:700; color:var(--accent); line-height:1; }
 .streak-label { font-family:var(--mono); font-size:9px; letter-spacing:.1em; text-transform:uppercase; color:var(--dim); margin-top:2px; }
@@ -127,15 +74,20 @@ body {
 /* ── Day picker modal ── */
 .dp-modal { position:fixed; inset:0; z-index:100; background:rgba(0,0,0,.75); display:none; align-items:center; justify-content:center; padding:20px; }
 .dp-modal.open { display:flex; }
-.dp-box   { background:var(--surface); border:1px solid var(--border2); border-radius:14px; padding:20px; width:100%; max-width:320px; }
-.dp-head  { display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; }
+.dp-box { background:var(--surface); border:1px solid var(--border2); border-radius:14px; padding:20px; width:100%; max-width:320px; }
+.dp-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; }
 .dp-title { font-size:15px; font-weight:500; color:var(--text); }
 .dp-close { background:none; border:none; color:var(--dim); font-size:20px; cursor:pointer; padding:2px 8px; line-height:1; -webkit-tap-highlight-color:transparent; }
-.dp-opts  { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:12px; }
-.dp-opt   { display:flex; align-items:center; gap:8px; padding:11px 12px; background:var(--raised); border:1px solid var(--border); border-radius:8px; cursor:pointer; color:var(--muted); font-family:var(--ui); font-size:13px; transition:all .15s; -webkit-tap-highlight-color:transparent; }
+.dp-opts { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:10px; }
+.dp-opt { display:flex; align-items:center; gap:8px; padding:11px 12px; background:var(--raised); border:1px solid var(--border); border-radius:8px; cursor:pointer; color:var(--muted); font-family:var(--ui); font-size:13px; transition:all .15s; -webkit-tap-highlight-color:transparent; }
 .dp-opt:active { opacity:.7; }
-.dp-opt.sel    { border-color:var(--border2); color:var(--text); background:var(--faint); }
+.dp-opt.sel { border-color:var(--border2); color:var(--text); background:var(--faint); }
 .dp-dot { width:12px; height:12px; border-radius:50%; flex-shrink:0; }
+.dp-extras { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:10px; }
+.dp-extra { display:flex; align-items:center; justify-content:center; gap:6px; padding:10px 8px; background:var(--raised); border:1px solid var(--border); border-radius:8px; cursor:pointer; font-family:var(--ui); font-size:13px; color:var(--muted); transition:all .15s; -webkit-tap-highlight-color:transparent; }
+.dp-extra:active { opacity:.7; }
+.dp-extra.sel-med  { border-color:#4a9; color:#4a9; background:#0a1a12; }
+.dp-extra.sel-jour { border-color:#a84; color:#a84; background:#1a120a; }
 .dp-clear { width:100%; padding:9px; background:none; border:1px solid var(--border); border-radius:8px; color:var(--dim); font-family:var(--mono); font-size:11px; cursor:pointer; letter-spacing:.05em; transition:all .15s; -webkit-tap-highlight-color:transparent; }
 
 /* ── Quick log ── */
@@ -152,8 +104,8 @@ body {
   0%,100% { color:var(--accent); text-shadow:0 0 18px var(--accent-glow); }
   50%      { color:#fff; text-shadow:0 0 36px rgba(255,255,255,.5); }
 }
-.timer-row   { display:flex; gap:6px; margin-bottom:10px; align-items:center; flex-wrap:wrap; }
-.preset-btn  { font-family:var(--mono); font-size:12px; background:var(--raised); border:1px solid var(--border); border-radius:6px; color:var(--muted); padding:6px 12px; cursor:pointer; transition:all .15s; -webkit-tap-highlight-color:transparent; }
+.timer-row { display:flex; gap:6px; margin-bottom:10px; align-items:center; flex-wrap:wrap; }
+.preset-btn { font-family:var(--mono); font-size:12px; background:var(--raised); border:1px solid var(--border); border-radius:6px; color:var(--muted); padding:6px 12px; cursor:pointer; transition:all .15s; -webkit-tap-highlight-color:transparent; }
 .preset-btn.active { background:var(--accent); border-color:var(--accent); color:#fff; }
 .custom-wrap { display:flex; align-items:center; gap:5px; margin-left:auto; }
 .custom-wrap input { font-family:var(--mono); font-size:12px; background:var(--raised); border:1px solid var(--border); border-radius:6px; color:var(--text); padding:5px 8px; width:52px; text-align:center; outline:none; }
@@ -164,13 +116,13 @@ body {
 .ctrl-btn.start { background:var(--accent); border-color:var(--accent); color:#fff; }
 .ctrl-btn.pause { border-color:var(--accent); color:var(--accent); }
 
-/* ── Archive dropdown ── */
+/* ── Archive ── */
 .archive-select { width:100%; padding:11px 14px; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); color:var(--muted); font-family:var(--mono); font-size:12px; cursor:pointer; appearance:none; -webkit-appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23555' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 14px center; padding-right:36px; outline:none; margin-bottom:8px; }
 .archive-select:focus { border-color:var(--border2); color:var(--text); }
 
 /* ── Workout cards ── */
 .wo-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:14px; }
-.wo-card { background:var(--surface); border:1px solid var(--border); border-left-width:3px; border-radius:var(--radius); padding:14px; cursor:pointer; transition:border-color .15s, opacity .2s; -webkit-tap-highlight-color:transparent; }
+.wo-card { background:var(--surface); border:1px solid var(--border); border-left-width:3px; border-radius:var(--radius); padding:14px; cursor:pointer; transition:border-color .15s,opacity .2s; -webkit-tap-highlight-color:transparent; }
 .wo-card.upper { border-left-color:var(--c-upper); }
 .wo-card.lower { border-left-color:var(--c-lower); }
 .wo-card.faded { opacity:.25; pointer-events:none; }
@@ -180,97 +132,62 @@ body {
 .wo-name { font-size:16px; font-weight:600; color:var(--text); margin-bottom:6px; }
 .wo-last { font-family:var(--mono); font-size:11px; color:var(--dim); }
 
-/* ── Open workout panel ── */
+/* ── Open workout ── */
 .wo-open { background:var(--surface); border:1px solid var(--accent); border-radius:var(--radius); overflow:hidden; display:none; }
 .wo-open-head { background:var(--raised); padding:14px 16px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--border); }
 .wo-open-name { font-size:18px; font-weight:600; color:var(--text); margin-bottom:3px; }
-.wo-open-sub  { font-family:var(--mono); font-size:9px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); }
+.wo-open-sub { font-family:var(--mono); font-size:9px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); }
 .wo-close { background:none; border:none; color:var(--dim); font-size:22px; cursor:pointer; padding:4px; line-height:1; -webkit-tap-highlight-color:transparent; }
-.wo-body  { padding:16px; }
-.block    { margin-bottom:20px; }
+.wo-body { padding:16px; }
+.block { margin-bottom:20px; }
 .blk-head { display:flex; align-items:center; gap:10px; padding-bottom:10px; border-bottom:1px solid var(--faint); margin-bottom:2px; }
 .blk-check { width:22px; height:22px; flex-shrink:0; appearance:none; -webkit-appearance:none; background:var(--raised); border:1.5px solid var(--border2); border-radius:5px; cursor:pointer; position:relative; transition:all .15s; }
 .blk-check:checked { background:var(--accent); border-color:var(--accent); }
 .blk-check:checked::after { content:''; position:absolute; left:5px; top:2px; width:8px; height:12px; border:2.5px solid #fff; border-top:none; border-left:none; transform:rotate(42deg); }
 .blk-title { font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); }
-.blk-rest  { font-family:var(--mono); font-size:10px; color:var(--accent-dim); margin-top:2px; }
-.blk-note  { font-family:var(--mono); font-size:9px; color:var(--dim); margin-top:3px; letter-spacing:.03em; }
-.ex-row    { display:flex; justify-content:space-between; align-items:flex-start; padding:12px 0; border-bottom:1px solid #181818; gap:12px; }
+.blk-rest { font-family:var(--mono); font-size:10px; color:var(--accent-dim); margin-top:2px; }
+.blk-note { font-family:var(--mono); font-size:9px; color:var(--dim); margin-top:3px; letter-spacing:.03em; }
+.ex-row { display:flex; justify-content:space-between; align-items:flex-start; padding:12px 0; border-bottom:1px solid #181818; gap:12px; }
 .ex-row:last-of-type { border-bottom:none; }
-.ex-name   { font-size:17px; font-weight:600; color:var(--text); margin-bottom:3px; line-height:1.25; }
-.ex-tip    { font-size:12px; color:var(--muted); line-height:1.45; }
-.ex-right  { text-align:right; flex-shrink:0; max-width:140px; }
-.ex-sets   { font-family:var(--mono); font-size:14px; font-weight:600; color:var(--text); white-space:normal; line-height:1.4; }
-.ex-note   { font-family:var(--mono); font-size:10px; color:var(--dim); margin-top:3px; }
-.prog-box  { margin-top:18px; padding:11px 13px; background:var(--raised); border-radius:7px; border-left:2px solid var(--accent-dim); }
-.prog-lbl  { font-family:var(--mono); font-size:9px; letter-spacing:.1em; text-transform:uppercase; color:var(--dim); margin-bottom:4px; }
-.prog-txt  { font-size:12px; color:var(--muted); line-height:1.5; }
-.log-btn   { width:100%; margin-top:18px; background:var(--accent); border:none; border-radius:8px; color:#fff; font-family:var(--mono); font-size:13px; letter-spacing:.06em; padding:14px 0; cursor:pointer; transition:background .15s; -webkit-tap-highlight-color:transparent; }
+.ex-name { font-size:17px; font-weight:600; color:var(--text); margin-bottom:3px; line-height:1.25; }
+.ex-tip { font-size:12px; color:var(--muted); line-height:1.45; }
+.ex-right { text-align:right; flex-shrink:0; max-width:140px; }
+.ex-sets { font-family:var(--mono); font-size:14px; font-weight:600; color:var(--text); white-space:normal; line-height:1.4; }
+.ex-note { font-family:var(--mono); font-size:10px; color:var(--dim); margin-top:3px; }
+.prog-box { margin-top:18px; padding:11px 13px; background:var(--raised); border-radius:7px; border-left:2px solid var(--accent-dim); }
+.prog-lbl { font-family:var(--mono); font-size:9px; letter-spacing:.1em; text-transform:uppercase; color:var(--dim); margin-bottom:4px; }
+.prog-txt { font-size:12px; color:var(--muted); line-height:1.5; }
+.log-btn { width:100%; margin-top:18px; background:var(--accent); border:none; border-radius:8px; color:#fff; font-family:var(--mono); font-size:13px; letter-spacing:.06em; padding:14px 0; cursor:pointer; transition:background .15s; -webkit-tap-highlight-color:transparent; }
 .log-btn:active { opacity:.8; }
 .log-btn.done { background:#1a3a1a; border:1px solid #2a5a2a; color:#5aaa5a; cursor:default; }
+
+/* ── Randomizer ── */
+.rand-filters { display:grid; grid-template-columns:repeat(5,1fr); gap:6px; margin-bottom:14px; }
+.rand-filter { padding:9px 2px; background:var(--surface); border:1px solid var(--border); border-radius:8px; font-family:var(--mono); font-size:9px; letter-spacing:.05em; text-transform:uppercase; color:var(--dim); cursor:pointer; transition:all .15s; text-align:center; -webkit-tap-highlight-color:transparent; }
+.rand-filter:active { opacity:.7; }
+.rand-filter.active { background:var(--accent); border-color:var(--accent); color:#fff; }
+.rand-spin-btn { width:100%; padding:16px 0; background:var(--accent); border:none; border-radius:var(--radius); color:#fff; font-family:var(--mono); font-size:14px; letter-spacing:.1em; text-transform:uppercase; cursor:pointer; transition:all .15s; -webkit-tap-highlight-color:transparent; margin-bottom:16px; }
+.rand-spin-btn:active { opacity:.8; }
+.rand-spin-btn:disabled { opacity:.5; cursor:default; }
+.rand-result { background:#1e1e1e; border:1px solid var(--border2); border-radius:var(--radius); padding:20px; text-align:center; min-height:160px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; transition:all .2s; }
+.rand-ex-name { font-size:26px; font-weight:700; color:var(--text); line-height:1.2; }
+.rand-ex-muscle { font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); }
+.rand-ex-desc { font-size:13px; color:var(--muted); line-height:1.5; max-width:380px; }
+.rand-empty { font-family:var(--mono); font-size:12px; color:var(--dim); }
+.rand-again { margin-top:4px; padding:9px 20px; background:none; border:1px solid var(--border2); border-radius:8px; color:var(--muted); font-family:var(--mono); font-size:11px; cursor:pointer; letter-spacing:.06em; transition:all .15s; -webkit-tap-highlight-color:transparent; }
+.rand-again:hover { color:var(--text); border-color:var(--accent); }
 
 /* ── Video grid ── */
 .video-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
 .video-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; }
 .video-embed { position:relative; padding-bottom:56.25%; height:0; overflow:hidden; }
 .video-embed iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:none; }
-.video-placeholder { position:relative; padding-bottom:56.25%; height:0; background:var(--raised); display:flex; align-items:center; justify-content:center; }
+.video-placeholder { position:relative; padding-bottom:56.25%; height:0; background:var(--raised); }
 .video-placeholder-inner { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; color:var(--dim); }
-.video-placeholder-icon { font-size:32px; }
-.video-meta { padding:12px 14px; }
-.video-title { font-size:14px; font-weight:500; color:var(--text); margin-bottom:4px; line-height:1.3; }
-.video-desc  { font-size:12px; color:var(--muted); line-height:1.4; }
-
-/* ── Randomizer ── */
-.rand-filters { display:grid; grid-template-columns:repeat(5,1fr); gap:6px; margin-bottom:14px; }
-.rand-filter {
-  padding:8px 4px; background:var(--surface); border:1px solid var(--border);
-  border-radius:8px; font-family:var(--mono); font-size:10px; letter-spacing:.06em;
-  text-transform:uppercase; color:var(--dim); cursor:pointer;
-  transition:all .15s; text-align:center; -webkit-tap-highlight-color:transparent;
-}
-.rand-filter:active { opacity:.7; }
-.rand-filter.active { background:var(--accent); border-color:var(--accent); color:#fff; }
-.rand-spin-btn {
-  width:100%; padding:16px 0; background:var(--accent); border:none;
-  border-radius:var(--radius); color:#fff; font-family:var(--mono);
-  font-size:14px; letter-spacing:.1em; text-transform:uppercase;
-  cursor:pointer; transition:all .15s; -webkit-tap-highlight-color:transparent;
-  margin-bottom:16px;
-}
-.rand-spin-btn:active { opacity:.8; }
-.rand-spin-btn:disabled { opacity:.5; cursor:default; }
-.rand-result {
-  background:var(--surface); border:1px solid var(--border);
-  border-radius:var(--radius); padding:20px; text-align:center;
-  min-height:140px; display:flex; flex-direction:column;
-  align-items:center; justify-content:center; gap:8px;
-  transition:all .2s;
-}
-.rand-result.spinning .rand-name { opacity:.4; }
-.rand-ex-name {
-  font-size:24px; font-weight:700; color:var(--text);
-  line-height:1.2; transition:all .15s;
-}
-.rand-ex-muscle {
-  font-family:var(--mono); font-size:10px; letter-spacing:.1em;
-  text-transform:uppercase; color:var(--accent); margin-bottom:4px;
-}
-.rand-ex-desc {
-  font-size:13px; color:var(--muted); line-height:1.5;
-  max-width:380px;
-}
-.rand-empty {
-  font-family:var(--mono); font-size:12px; color:var(--dim);
-}
-.rand-again {
-  margin-top:12px; padding:9px 20px; background:none;
-  border:1px solid var(--border2); border-radius:8px;
-  color:var(--muted); font-family:var(--mono); font-size:11px;
-  cursor:pointer; letter-spacing:.06em; transition:all .15s;
-  -webkit-tap-highlight-color:transparent;
-}
-.rand-again:hover { color:var(--text); border-color:var(--accent); }
+.video-placeholder-icon { font-size:28px; }
+.video-meta { padding:10px 12px; }
+.video-title { font-size:13px; font-weight:500; color:var(--text); margin-bottom:3px; line-height:1.3; }
+.video-desc { font-size:11px; color:var(--muted); line-height:1.4; }
 
 /* ── Toast ── */
 .toast { position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(60px); background:var(--raised); border:1px solid var(--border2); border-radius:8px; padding:11px 20px; font-family:var(--mono); font-size:12px; color:var(--text); opacity:0; transition:all .3s; pointer-events:none; white-space:nowrap; z-index:999; }
@@ -280,12 +197,12 @@ body {
   .timer-display { font-size:44px; }
   .ex-name { font-size:15px; }
   .ex-sets { font-size:13px; }
+  .rand-ex-name { font-size:20px; }
 }
 </style>
 </head>
 <body class="theme-kevin">
 
-<!-- ── Tab bar ── -->
 <div class="tab-bar">
   <button class="tab-btn active" data-tab="kevin">Kevin</button>
   <button class="tab-btn" data-tab="audra">Audra</button>
@@ -293,15 +210,9 @@ body {
   <button class="tab-btn" data-tab="random">Random</button>
 </div>
 
-<!-- ════════════════════════════════════
-     KEVIN TAB
-════════════════════════════════════ -->
+<!-- KEVIN TAB -->
 <div class="tab-panel active" id="tab-kevin">
-  <header class="app-header">
-    <span class="app-title">Workout Tracker</span>
-    <span class="app-date" id="kevinDate"></span>
-  </header>
-
+  <header class="app-header"><span class="app-title">Workout Tracker</span><span class="app-date" id="kevinDate"></span></header>
   <div class="panel">
     <div class="cal-header">
       <button class="cal-nav" data-user="kevin" data-dir="prev">&#8249;</button>
@@ -315,7 +226,6 @@ body {
       <div class="streak-right"><div id="kevinSessions">0 sessions</div><div id="kevinMonth"></div></div>
     </div>
   </div>
-
   <span class="slabel">Quick log today</span>
   <div class="quick-btns" data-user="kevin">
     <button class="qbtn" data-type="upper"><div class="qdot" style="background:var(--c-upper)"></div><span>Upper</span></button>
@@ -323,49 +233,35 @@ body {
     <button class="qbtn" data-type="climb"><div class="qdot" style="background:var(--c-climb)"></div><span>Climb</span></button>
     <button class="qbtn" data-type="cardio"><div class="qdot" style="background:var(--c-cardio)"></div><span>Cardio</span></button>
     <button class="qbtn" data-type="yoga"><div class="qdot" style="background:var(--c-yoga)"></div><span>Yoga</span></button>
-    <button class="qbtn" data-type="walk"><div class="qdot" style="background:var(--c-walk)"></div><span>Walk / Other</span></button>
+    <button class="qbtn" data-type="walk"><div class="qdot" style="background:var(--c-walk)"></div><span>Walk/Other</span></button>
   </div>
-
   <div class="divider"></div>
-
   <div class="panel">
     <span class="slabel">Rest timer</span>
-    <div class="timer-display" id="timerDisplay">01:00</div>
+    <div class="timer-display" id="kevinTimerDisplay">01:00</div>
     <div class="timer-row">
-      <button class="preset-btn active" data-secs="60">60s</button>
-      <button class="preset-btn" data-secs="90">90s</button>
-      <button class="preset-btn" data-secs="1200">20m</button>
-      <div class="custom-wrap">
-        <input type="number" id="customTime" min="1" max="7200" placeholder="—"/>
-        <span>sec</span>
-      </div>
+      <button class="preset-btn active" data-secs="60" data-timer="kevin">60s</button>
+      <button class="preset-btn" data-secs="90" data-timer="kevin">90s</button>
+      <button class="preset-btn" data-secs="1200" data-timer="kevin">20m</button>
+      <div class="custom-wrap"><input type="number" id="kevinCustomTime" min="1" max="7200" placeholder="&#8212;"/><span>sec</span></div>
     </div>
     <div class="ctrl-row">
-      <button class="ctrl-btn start" id="startPauseBtn">Start</button>
-      <button class="ctrl-btn" id="resetBtn">Reset</button>
+      <button class="ctrl-btn start" id="kevinStartBtn">Start</button>
+      <button class="ctrl-btn" id="kevinResetBtn">Reset</button>
     </div>
   </div>
-
   <div class="divider"></div>
-
   <span class="slabel">Past workouts</span>
   <select class="archive-select" id="kevinArchiveSelect"><option value="">-- Archived workouts --</option></select>
   <div class="wo-open" id="kevinArchivePanel" style="margin-bottom:14px"></div>
-
   <span class="slabel" style="margin-bottom:10px">Workouts</span>
   <div class="wo-grid" id="kevinWoGrid"></div>
   <div class="wo-open" id="kevinWoOpen"></div>
 </div>
 
-<!-- ════════════════════════════════════
-     AUDRA TAB
-════════════════════════════════════ -->
+<!-- AUDRA TAB -->
 <div class="tab-panel" id="tab-audra">
-  <header class="app-header">
-    <span class="app-title">Workout Tracker</span>
-    <span class="app-date" id="audraDate"></span>
-  </header>
-
+  <header class="app-header"><span class="app-title">Workout Tracker</span><span class="app-date" id="audraDate"></span></header>
   <div class="panel">
     <div class="cal-header">
       <button class="cal-nav" data-user="audra" data-dir="prev">&#8249;</button>
@@ -379,7 +275,6 @@ body {
       <div class="streak-right"><div id="audraSessions">0 sessions</div><div id="audraMonth"></div></div>
     </div>
   </div>
-
   <span class="slabel">Quick log today</span>
   <div class="quick-btns" data-user="audra">
     <button class="qbtn" data-type="upper"><div class="qdot" style="background:var(--c-upper)"></div><span>Upper</span></button>
@@ -387,9 +282,9 @@ body {
     <button class="qbtn" data-type="climb"><div class="qdot" style="background:var(--c-climb)"></div><span>Climb</span></button>
     <button class="qbtn" data-type="cardio"><div class="qdot" style="background:var(--c-cardio)"></div><span>Cardio</span></button>
     <button class="qbtn" data-type="yoga"><div class="qdot" style="background:var(--c-yoga)"></div><span>Yoga</span></button>
-    <button class="qbtn" data-type="walk"><div class="qdot" style="background:var(--c-walk)"></div><span>Walk / Other</span></button>
+    <button class="qbtn" data-type="walk"><div class="qdot" style="background:var(--c-walk)"></div><span>Walk/Other</span></button>
   </div>
-
+  <div class="divider"></div>
   <div class="panel">
     <span class="slabel">Rest timer</span>
     <div class="timer-display" id="audraTimerDisplay">01:00</div>
@@ -397,111 +292,44 @@ body {
       <button class="preset-btn active" data-secs="60" data-timer="audra">60s</button>
       <button class="preset-btn" data-secs="90" data-timer="audra">90s</button>
       <button class="preset-btn" data-secs="1200" data-timer="audra">20m</button>
-      <div class="custom-wrap">
-        <input type="number" id="audraCustomTime" min="1" max="7200" placeholder="—"/>
-        <span>sec</span>
-      </div>
+      <div class="custom-wrap"><input type="number" id="audraCustomTime" min="1" max="7200" placeholder="&#8212;"/><span>sec</span></div>
     </div>
     <div class="ctrl-row">
-      <button class="ctrl-btn start" id="audraStartPauseBtn">Start</button>
+      <button class="ctrl-btn start" id="audraStartBtn">Start</button>
       <button class="ctrl-btn" id="audraResetBtn">Reset</button>
     </div>
   </div>
-
   <div class="divider"></div>
-
   <span class="slabel">Past workouts</span>
   <select class="archive-select" id="audraArchiveSelect"><option value="">-- Archived workouts --</option></select>
   <div class="wo-open" id="audraArchivePanel" style="margin-bottom:14px"></div>
-
   <span class="slabel" style="margin-bottom:10px">Workouts</span>
   <div class="wo-grid" id="audraWoGrid"></div>
   <div class="wo-open" id="audraWoOpen"></div>
 </div>
 
-<!-- ════════════════════════════════════
-     VIDEOS TAB
-════════════════════════════════════ -->
+<!-- VIDEOS TAB -->
 <div class="tab-panel" id="tab-videos">
-  <header class="app-header">
-    <span class="app-title">Videos</span>
-    <span class="app-date" id="videoDate"></span>
-  </header>
-
+  <header class="app-header"><span class="app-title">Videos</span><span class="app-date" id="videoDate"></span></header>
   <div class="video-grid">
-
-    <div class="video-card">
-      <div class="video-embed">
-        <iframe src="https://www.youtube.com/embed/WltkvVB_lfM?si=OWSx2-GjMj_GQwiT" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      </div>
-      <div class="video-meta">
-        <div class="video-title">Yoga Flow</div>
-        <div class="video-desc">Full body yoga session</div>
-      </div>
-    </div>
-
-    <div class="video-card">
-      <div class="video-embed">
-        <iframe src="https://www.youtube.com/embed/qus4gntUw-o?si=17xGh_J28PLMRq00" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      </div>
-      <div class="video-meta">
-        <div class="video-title">Yoga Flow</div>
-        <div class="video-desc">Full body yoga session</div>
-      </div>
-    </div>
-
-    <div class="video-card">
-      <div class="video-embed">
-        <iframe src="https://www.youtube.com/embed/fxT-5bmzWbk?si=9tBl7iOQddFM-d1m" title="20 Min Yoga Flow | Beginner Friendly" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      </div>
-      <div class="video-meta">
-        <div class="video-title">20 Min Yoga Flow</div>
-        <div class="video-desc">Beginner friendly, gentle full body</div>
-      </div>
-    </div>
-
-    <div class="video-card">
-      <div class="video-embed">
-        <iframe src="https://www.youtube.com/embed/7BEhZLHfL2Q?si=ccWCh1BXRyg78ajo" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      </div>
-      <div class="video-meta">
-        <div class="video-title">Yoga Session</div>
-        <div class="video-desc">Full body yoga flow</div>
-      </div>
-    </div>
-
-    <div class="video-card">
-      <div class="video-embed">
-        <iframe src="https://www.youtube.com/embed/N8-sNE4VRwI?si=3JZu8JhomNKHbjCn" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      </div>
-      <div class="video-meta">
-        <div class="video-title">Yoga Session</div>
-        <div class="video-desc">Full body yoga flow</div>
-      </div>
-    </div>
-
-    <div class="video-card">
-      <div class="video-embed">
-        <iframe src="https://www.youtube.com/embed/bVVfE0M5CNw?si=PKrMN08gQciHkWh2" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      </div>
-      <div class="video-meta">
-        <div class="video-title">Yoga Session</div>
-        <div class="video-desc">Full body yoga flow</div>
-      </div>
-    </div>
-
+    <div class="video-card"><div class="video-embed"><iframe src="https://www.youtube.com/embed/WltkvVB_lfM?si=OWSx2-GjMj_GQwiT" title="Power and Balance Yoga" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><div class="video-meta"><div class="video-title">Power &amp; Balance Yoga</div><div class="video-desc">Strength and balance focused yoga flow</div></div></div>
+    <div class="video-card"><div class="video-embed"><iframe src="https://www.youtube.com/embed/qus4gntUw-o?si=17xGh_J28PLMRq00" title="15 Minute Leg Workout" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><div class="video-meta"><div class="video-title">15 Minute Leg Workout</div><div class="video-desc">Quick lower body strength session</div></div></div>
+    <div class="video-card"><div class="video-embed"><iframe src="https://www.youtube.com/embed/fxT-5bmzWbk?si=9tBl7iOQddFM-d1m" title="20 Min Yoga Flow" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><div class="video-meta"><div class="video-title">20 Min Yoga Flow</div><div class="video-desc">Beginner friendly, gentle full body</div></div></div>
+    <div class="video-card"><div class="video-embed"><iframe src="https://www.youtube.com/embed/7BEhZLHfL2Q?si=ccWCh1BXRyg78ajo" title="10 Min Yoga Stretch" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><div class="video-meta"><div class="video-title">10 Min Yoga Stretch</div><div class="video-desc">Quick mobility and stretch session</div></div></div>
+    <div class="video-card"><div class="video-embed"><iframe src="https://www.youtube.com/embed/N8-sNE4VRwI?si=3JZu8JhomNKHbjCn" title="Dumbbell Leg Workout" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><div class="video-meta"><div class="video-title">Dumbbell Leg Workout</div><div class="video-desc">Lower body strength with dumbbells</div></div></div>
+    <div class="video-card"><div class="video-embed"><iframe src="https://www.youtube.com/embed/bVVfE0M5CNw?si=PKrMN08gQciHkWh2" title="Chest and Shoulders Workout" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><div class="video-meta"><div class="video-title">Chest &amp; Shoulders Workout</div><div class="video-desc">Upper body push day</div></div></div>
+    <div class="video-card"><div class="video-embed"><iframe src="https://www.youtube.com/embed/XwC7MDDsbDs?si=DSDqGY1l64govF7Q" title="Restorative Yoga" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><div class="video-meta"><div class="video-title">Restorative Yoga</div><div class="video-desc">Gentle restorative yoga practice</div></div></div>
+    <div class="video-card"><div class="video-placeholder"><div class="video-placeholder-inner"><div class="video-placeholder-icon">&#9654;</div><div style="font-family:var(--mono);font-size:10px;color:var(--dim)">Add video 8</div></div></div><div class="video-meta"><div class="video-title" style="color:var(--dim)">Placeholder</div><div class="video-desc">Replace with embed code in index.html</div></div></div>
+    <div class="video-card"><div class="video-placeholder"><div class="video-placeholder-inner"><div class="video-placeholder-icon">&#9654;</div><div style="font-family:var(--mono);font-size:10px;color:var(--dim)">Add video 9</div></div></div><div class="video-meta"><div class="video-title" style="color:var(--dim)">Placeholder</div><div class="video-desc">Replace with embed code in index.html</div></div></div>
+    <div class="video-card"><div class="video-placeholder"><div class="video-placeholder-inner"><div class="video-placeholder-icon">&#9654;</div><div style="font-family:var(--mono);font-size:10px;color:var(--dim)">Add video 10</div></div></div><div class="video-meta"><div class="video-title" style="color:var(--dim)">Placeholder</div><div class="video-desc">Replace with embed code in index.html</div></div></div>
+    <div class="video-card"><div class="video-placeholder"><div class="video-placeholder-inner"><div class="video-placeholder-icon">&#9654;</div><div style="font-family:var(--mono);font-size:10px;color:var(--dim)">Add video 11</div></div></div><div class="video-meta"><div class="video-title" style="color:var(--dim)">Placeholder</div><div class="video-desc">Replace with embed code in index.html</div></div></div>
+    <div class="video-card"><div class="video-placeholder"><div class="video-placeholder-inner"><div class="video-placeholder-icon">&#9654;</div><div style="font-family:var(--mono);font-size:10px;color:var(--dim)">Add video 12</div></div></div><div class="video-meta"><div class="video-title" style="color:var(--dim)">Placeholder</div><div class="video-desc">Replace with embed code in index.html</div></div></div>
   </div>
 </div>
 
-<!-- ════════════════════════════════════
-     RANDOM TAB
-════════════════════════════════════ -->
+<!-- RANDOM TAB -->
 <div class="tab-panel" id="tab-random">
-  <header class="app-header">
-    <span class="app-title">Exercise Randomizer</span>
-    <span class="app-date" id="randomDate"></span>
-  </header>
-
+  <header class="app-header"><span class="app-title">Exercise Randomizer</span><span class="app-date" id="randomDate"></span></header>
   <span class="slabel">Filter by category</span>
   <div class="rand-filters">
     <button class="rand-filter active" data-cat="all">Wild Card</button>
@@ -510,128 +338,87 @@ body {
     <button class="rand-filter" data-cat="core">Core</button>
     <button class="rand-filter" data-cat="full">Full Body</button>
   </div>
-
   <button class="rand-spin-btn" id="randSpinBtn">&#9654; Spin</button>
-
-  <div class="rand-result" id="randResult">
-    <div class="rand-empty">Hit spin to get a random exercise</div>
-  </div>
+  <div class="rand-result" id="randResult"><div class="rand-empty">Hit spin to get a random exercise</div></div>
 </div>
 
-<!-- Day picker modal (shared) -->
+<!-- Day picker modal -->
 <div class="dp-modal" id="dpModal"><div class="dp-box" id="dpBox"></div></div>
 
-<!-- Toast (shared) -->
+<!-- Toast -->
 <div class="toast" id="toast"></div>
 
 <script>
-/* ════════════════════════════════════
-   CONSTANTS & STATE
-════════════════════════════════════ */
+/* ── Constants ── */
 var ACT = {
-  upper:  { label:'Upper body',   cls:'act-upper'  },
-  lower:  { label:'Lower body',   cls:'act-lower'  },
-  climb:  { label:'Climbing',     cls:'act-climb'  },
-  cardio: { label:'Cardio',       cls:'act-cardio' },
-  yoga:   { label:'Yoga',         cls:'act-yoga'   },
-  walk:   { label:'Walk / Other', cls:'act-walk'   }
+  upper:  {label:'Upper body',   cls:'act-upper'},
+  lower:  {label:'Lower body',   cls:'act-lower'},
+  climb:  {label:'Climbing',     cls:'act-climb'},
+  cardio: {label:'Cardio',       cls:'act-cardio'},
+  yoga:   {label:'Yoga',         cls:'act-yoga'},
+  walk:   {label:'Walk / Other', cls:'act-walk'}
 };
 var MO  = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 var MOS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
-/* Per-user state */
+/* ── State ── */
 var users = {
-  kevin: {
-    logsKey: 'kevin_wt_logs',
-    lastKey:  'kevin_wt_last',
-    calY: new Date().getFullYear(),
-    calM: new Date().getMonth(),
-    workouts: [],
-    archived: [],
-    openId: null
-  },
-  audra: {
-    logsKey: 'audra_wt_logs',
-    lastKey:  'audra_wt_last',
-    calY: new Date().getFullYear(),
-    calM: new Date().getMonth(),
-    workouts: [],
-    archived: [],
-    openId: null
-  }
+  kevin: {logsKey:'kevin_wt_logs',lastKey:'kevin_wt_last',calY:new Date().getFullYear(),calM:new Date().getMonth(),workouts:[],archived:[],openId:null},
+  audra: {logsKey:'audra_wt_logs',lastKey:'audra_wt_last',calY:new Date().getFullYear(),calM:new Date().getMonth(),workouts:[],archived:[],openId:null}
 };
+var allExercises = [];
+var randCategory = 'all';
+var randSpinning = false;
 
-var activeTab = 'kevin';
+/* ── Storage ── */
+function getLogs(u)  {try{return JSON.parse(localStorage.getItem(users[u].logsKey)||'{}')}catch(e){return{}}}
+function getLast(u)  {try{return JSON.parse(localStorage.getItem(users[u].lastKey)||'{}')}catch(e){return{}}}
+function setLogs(u,o){localStorage.setItem(users[u].logsKey,JSON.stringify(o));}
+function setLast(u,o){localStorage.setItem(users[u].lastKey,JSON.stringify(o));}
+function getExtras(u,key){try{var e=JSON.parse(localStorage.getItem(u+'_extras')||'{}');return e[key]||{};}catch(ex){return{};}}
+function setExtras(u,key,obj){try{var all=JSON.parse(localStorage.getItem(u+'_extras')||'{}');if(obj.med||obj.jour){all[key]=obj;}else{delete all[key];}localStorage.setItem(u+'_extras',JSON.stringify(all));}catch(ex){}}
 
-/* Timer state */
-var tTotal=60, tRemain=60, tRunning=false, tTick=null, aCtx=null;
+/* ── Dates ── */
+function p2(n){return ('0'+n).slice(-2);}
+function todayKey(){var d=new Date();return d.getFullYear()+'-'+p2(d.getMonth()+1)+'-'+p2(d.getDate());}
+function mkKey(y,m,d){return y+'-'+p2(m+1)+'-'+p2(d);}
+function niceDate(k){if(!k)return 'Never';var p=k.split('-');return MOS[parseInt(p[1])-1]+' '+parseInt(p[2]);}
 
-/* ════════════════════════════════════
-   STORAGE HELPERS
-════════════════════════════════════ */
-function getLogs(u)  { try{return JSON.parse(localStorage.getItem(users[u].logsKey)||'{}')}catch(e){return{}} }
-function getLast(u)  { try{return JSON.parse(localStorage.getItem(users[u].lastKey)||'{}')}catch(e){return{}} }
-function setLogs(u,o){ localStorage.setItem(users[u].logsKey, JSON.stringify(o)); }
-function setLast(u,o){ localStorage.setItem(users[u].lastKey, JSON.stringify(o)); }
+/* ── Toast ── */
+function toast(msg){var el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');setTimeout(function(){el.classList.remove('show');},2500);}
 
-/* ════════════════════════════════════
-   DATE HELPERS
-════════════════════════════════════ */
-function p2(n){ return ('0'+n).slice(-2); }
-function todayKey(){ var d=new Date(); return d.getFullYear()+'-'+p2(d.getMonth()+1)+'-'+p2(d.getDate()); }
-function mkKey(y,m,d){ return y+'-'+p2(m+1)+'-'+p2(d); }
-function niceDate(k){ if(!k)return 'Never'; var p=k.split('-'); return MOS[parseInt(p[1])-1]+' '+parseInt(p[2]); }
-
-/* ════════════════════════════════════
-   TOAST
-════════════════════════════════════ */
-function toast(msg){
-  var el=document.getElementById('toast');
-  el.textContent=msg; el.classList.add('show');
-  setTimeout(function(){el.classList.remove('show');},2500);
-}
-
-/* ════════════════════════════════════
-   TAB SWITCHING
-════════════════════════════════════ */
+/* ── Tab switching ── */
 function switchTab(tab){
-  activeTab = tab;
-  document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.toggle('active', b.getAttribute('data-tab')===tab); });
-  document.querySelectorAll('.tab-panel').forEach(function(p){ p.classList.toggle('active', p.id==='tab-'+tab); });
-  if(tab==='audra'){
-    document.body.className='theme-audra';
-  } else {
-    document.body.className='theme-kevin';
-  }
-  if(tab==='kevin' || tab==='audra') renderCal(tab);
+  document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.toggle('active',b.getAttribute('data-tab')===tab);});
+  document.querySelectorAll('.tab-panel').forEach(function(p){p.classList.toggle('active',p.id==='tab-'+tab);});
+  document.body.className = tab==='audra' ? 'theme-audra' : 'theme-kevin';
+  if(tab==='kevin'||tab==='audra') renderCal(tab);
 }
 
-/* ════════════════════════════════════
-   CALENDAR
-════════════════════════════════════ */
+/* ── Calendar ── */
 function renderCal(u){
-  var s    = users[u];
-  var logs = getLogs(u);
-  var today= todayKey();
-  var first= new Date(s.calY, s.calM, 1).getDay();
-  var days = new Date(s.calY, s.calM+1, 0).getDate();
-
-  document.getElementById(u+'CalMonth').textContent = MO[s.calM]+' '+s.calY;
-
-  var grid = document.getElementById(u+'CalDays');
+  var s=users[u]; var logs=getLogs(u); var today=todayKey();
+  var first=new Date(s.calY,s.calM,1).getDay();
+  var days=new Date(s.calY,s.calM+1,0).getDate();
+  document.getElementById(u+'CalMonth').textContent=MO[s.calM]+' '+s.calY;
+  var grid=document.getElementById(u+'CalDays');
   grid.innerHTML='';
-
-  for(var i=0;i<first;i++){
-    var b=document.createElement('div'); b.className='cal-day empty'; grid.appendChild(b);
-  }
+  for(var i=0;i<first;i++){var b=document.createElement('div');b.className='cal-day empty';grid.appendChild(b);}
   for(var d=1;d<=days;d++){
-    var key  = mkKey(s.calY, s.calM, d);
-    var type = logs[key]||null;
-    var el   = document.createElement('div');
-    el.className = 'cal-day'+(type&&ACT[type]?' '+ACT[type].cls:'')+(key===today?' today':'');
-    el.setAttribute('data-day', d);
+    var key=mkKey(s.calY,s.calM,d);
+    var type=logs[key]||null;
+    var el=document.createElement('div');
+    el.className='cal-day'+(type&&ACT[type]?' '+ACT[type].cls:'')+(key===today?' today':'');
+    el.setAttribute('data-day',d);
     if(type&&ACT[type]) el.title=ACT[type].label;
-    el.addEventListener('click', (function(k,usr){ return function(){ openDayPicker(k,usr); }; })(key,u));
+    var ex=getExtras(u,key);
+    if(ex.med||ex.jour){
+      var corner=document.createElement('div');
+      corner.className='cal-extras';
+      corner.innerHTML=(ex.med?'&#129504;':'')+(ex.jour?'&#128211;':'');
+      el.appendChild(corner);
+    }
+    el.addEventListener('click',(function(k,usr){return function(){openDayPicker(k,usr);};})(key,u));
     grid.appendChild(el);
   }
   updateStreak(u);
@@ -639,9 +426,9 @@ function renderCal(u){
 }
 
 function updateStreak(u){
-  var logs=getLogs(u); var today=todayKey();
-  var streak=0; var cur=new Date();
-  if(!logs[today]) cur.setDate(cur.getDate()-1);
+  var logs=getLogs(u);var today=todayKey();
+  var streak=0;var cur=new Date();
+  if(!logs[today])cur.setDate(cur.getDate()-1);
   for(var i=0;i<400;i++){
     var k=mkKey(cur.getFullYear(),cur.getMonth(),cur.getDate());
     if(logs[k]){streak++;cur.setDate(cur.getDate()-1);}else break;
@@ -654,11 +441,10 @@ function updateStreak(u){
   document.getElementById(u+'Month').textContent=MO[s.calM].slice(0,3).toLowerCase();
 }
 
-/* ════════════════════════════════════
-   DAY PICKER
-════════════════════════════════════ */
-function openDayPicker(key, u){
-  var logs=getLogs(u); var current=logs[key]||null;
+/* ── Day picker ── */
+function openDayPicker(key,u){
+  var logs=getLogs(u);var current=logs[key]||null;
+  var extras=getExtras(u,key);
   var label=(key===todayKey())?'Today':niceDate(key);
   var optsHtml=Object.keys(ACT).map(function(type){
     var act=ACT[type];
@@ -671,180 +457,173 @@ function openDayPicker(key, u){
     '<div class="dp-head"><span class="dp-title">'+label+'</span>'+
     '<button class="dp-close" id="dpClose">&#x2715;</button></div>'+
     '<div class="dp-opts" id="dpOpts">'+optsHtml+'</div>'+
+    '<div class="dp-extras">'+
+      '<button class="dp-extra'+(extras.med?' sel-med':'')+'" id="dpMed">&#129504; Meditation</button>'+
+      '<button class="dp-extra'+(extras.jour?' sel-jour':'')+'" id="dpJour">&#128211; Journaling</button>'+
+    '</div>'+
     (current?'<button class="dp-clear" id="dpClear">Clear this day</button>':'');
   var modal=document.getElementById('dpModal');
   modal.classList.add('open');
-  document.getElementById('dpClose').addEventListener('click', closeDayPicker);
+  document.getElementById('dpClose').addEventListener('click',closeDayPicker);
   modal.addEventListener('click',function(e){if(e.target===modal)closeDayPicker();});
   document.getElementById('dpOpts').querySelectorAll('.dp-opt').forEach(function(btn){
     btn.addEventListener('click',function(){
-      var t=btn.getAttribute('data-type'); var usr=btn.getAttribute('data-user');
-      var l=getLogs(usr); l[key]=t; setLogs(usr,l);
-      closeDayPicker(); renderCal(usr);
+      var t=btn.getAttribute('data-type');var usr=btn.getAttribute('data-user');
+      var l=getLogs(usr);l[key]=t;setLogs(usr,l);
+      closeDayPicker();renderCal(usr);
       toast(ACT[t].label+' logged for '+label+'.');
     });
   });
+  document.getElementById('dpMed').addEventListener('click',function(){
+    var ex=getExtras(u,key);ex.med=!ex.med;setExtras(u,key,ex);
+    this.classList.toggle('sel-med',!!ex.med);
+    renderCal(u);
+    toast(ex.med?'&#129504; Meditation logged.':'Meditation removed.');
+  });
+  document.getElementById('dpJour').addEventListener('click',function(){
+    var ex=getExtras(u,key);ex.jour=!ex.jour;setExtras(u,key,ex);
+    this.classList.toggle('sel-jour',!!ex.jour);
+    renderCal(u);
+    toast(ex.jour?'&#128211; Journaling logged.':'Journaling removed.');
+  });
   if(current){
     document.getElementById('dpClear').addEventListener('click',function(){
-      var l=getLogs(u); delete l[key]; setLogs(u,l);
-      closeDayPicker(); renderCal(u); toast('Cleared.');
+      var l=getLogs(u);delete l[key];setLogs(u,l);
+      closeDayPicker();renderCal(u);toast('Cleared.');
     });
   }
 }
-function closeDayPicker(){ document.getElementById('dpModal').classList.remove('open'); }
+function closeDayPicker(){document.getElementById('dpModal').classList.remove('open');}
 
-/* ════════════════════════════════════
-   QUICK LOG
-════════════════════════════════════ */
+/* ── Quick log ── */
 function refreshQBtns(u){
   var today=getLogs(u)[todayKey()]||null;
   document.querySelectorAll('.quick-btns[data-user="'+u+'"] .qbtn').forEach(function(b){
-    b.classList.toggle('on', b.getAttribute('data-type')===today);
+    b.classList.toggle('on',b.getAttribute('data-type')===today);
   });
 }
-function quickLog(u, type){
-  var logs=getLogs(u); var key=todayKey();
-  if(logs[key]===type){delete logs[key];}
-  else{logs[key]=type; toast(ACT[type].label+' logged.');}
-  setLogs(u,logs); renderCal(u);
+function quickLog(u,type){
+  var logs=getLogs(u);var key=todayKey();
+  if(logs[key]===type){delete logs[key];}else{logs[key]=type;toast(ACT[type].label+' logged.');}
+  setLogs(u,logs);renderCal(u);
 }
 
-/* ════════════════════════════════════
-   WORKOUT CARDS
-════════════════════════════════════ */
+/* ── Workout cards ── */
 function renderCards(u){
-  var s=users[u]; var last=getLast(u);
+  var s=users[u];var last=getLast(u);
   var grid=document.getElementById(u+'WoGrid');
   grid.innerHTML='';
   s.workouts.forEach(function(w){
     var card=document.createElement('div');
     card.className='wo-card '+w.type+(s.openId&&s.openId!==w.id?' faded':'');
-    card.innerHTML=
-      '<div class="wo-type">'+w.typeLabel+'</div>'+
+    card.innerHTML='<div class="wo-type">'+w.typeLabel+'</div>'+
       '<div class="wo-name">'+w.name+'</div>'+
       '<div class="wo-last">'+(last[w.id]?'Last: '+niceDate(last[w.id]):'Never done')+'</div>';
     card.addEventListener('click',(function(id,usr){return function(){toggleCard(id,usr);};})(w.id,u));
     grid.appendChild(card);
   });
 }
-
-function toggleCard(id,u){ users[u].openId===id ? closeCard(u) : openCard(id,u); }
-
+function toggleCard(id,u){users[u].openId===id?closeCard(u):openCard(id,u);}
 function openCard(id,u){
   users[u].openId=id;
   var w=users[u].workouts.find(function(x){return x.id===id;});
   if(!w)return;
   renderCards(u);
-  renderWorkoutPanel(w, u, document.getElementById(u+'WoOpen'), false);
+  renderWorkoutPanel(w,u,document.getElementById(u+'WoOpen'),false);
   var panel=document.getElementById(u+'WoOpen');
   setTimeout(function(){panel.scrollIntoView({behavior:'smooth',block:'nearest'});},60);
 }
-
 function closeCard(u){
   users[u].openId=null;
   var p=document.getElementById(u+'WoOpen');
-  p.style.display='none'; p.innerHTML='';
+  p.style.display='none';p.innerHTML='';
   renderCards(u);
 }
-
-function renderWorkoutPanel(w, u, panel, isArchive){
-  var logs=getLogs(u);
-  var logged=(logs[todayKey()]===w.type);
+function renderWorkoutPanel(w,u,panel,isArchive){
+  var logs=getLogs(u);var logged=(logs[todayKey()]===w.type);
   var exCount=w.blocks.reduce(function(s,b){return s+b.exercises.length;},0);
   var bHtml=w.blocks.map(function(b,bi){
     return '<div class="block">'+
       '<div class="blk-head">'+
-        '<input type="checkbox" class="blk-check" id="ck_'+u+'_'+bi+'">'+
-        '<div>'+
-          '<div class="blk-title">'+b.title+'</div>'+
-          '<div class="blk-rest">'+b.rest+'</div>'+
-          (b.note?'<div class="blk-note">'+b.note+'</div>':'')+
-        '</div>'+
-      '</div>'+
+        '<input type="checkbox" class="blk-check" id="ck_'+u+'_'+bi+(isArchive?'_a':'')+'">'+
+        '<div><div class="blk-title">'+b.title+'</div>'+
+        '<div class="blk-rest">'+b.rest+'</div>'+
+        (b.note?'<div class="blk-note">'+b.note+'</div>':'')+
+        '</div></div>'+
       b.exercises.map(function(ex){
         return '<div class="ex-row">'+
           '<div><div class="ex-name">'+ex.name+'</div><div class="ex-tip">'+ex.tip+'</div></div>'+
-          '<div class="ex-right"><div class="ex-sets">'+ex.sets+'</div>'+(ex.note?'<div class="ex-note">'+ex.note+'</div>':'')+' </div>'+
+          '<div class="ex-right"><div class="ex-sets">'+ex.sets+'</div>'+(ex.note?'<div class="ex-note">'+ex.note+'</div>':'')+'</div>'+
         '</div>';
-      }).join('')+
-    '</div>';
+      }).join('')+'</div>';
   }).join('');
+  var closeId='wc_'+u+(isArchive?'_a':'');
+  var logId='lb_'+u+(isArchive?'_a':'');
   panel.innerHTML=
     '<div class="wo-open-head">'+
       '<div><div class="wo-open-name">'+w.name+'</div>'+
       '<div class="wo-open-sub">'+w.typeLabel+' &middot; '+exCount+' exercises'+(isArchive?' &middot; archived':'')+'</div></div>'+
-      '<button class="wo-close" id="wc_'+u+'_'+isArchive+'">&#x2715;</button>'+
+      '<button class="wo-close" id="'+closeId+'">&#x2715;</button>'+
     '</div>'+
     '<div class="wo-body">'+bHtml+
       '<div class="prog-box"><div class="prog-lbl">Progression</div><div class="prog-txt">'+w.progression+'</div></div>'+
-      '<button class="log-btn'+(logged?' done':'')+'" id="lb_'+u+'_'+isArchive+'">'+(logged?'&#10003; Logged today':'&#10003; Log workout &mdash; mark today done')+'</button>'+
+      '<button class="log-btn'+(logged?' done':'')+'" id="'+logId+'">'+(logged?'&#10003; Logged today':'&#10003; Log workout &mdash; mark today done')+'</button>'+
     '</div>';
   panel.style.display='block';
-  document.getElementById('wc_'+u+'_'+isArchive).addEventListener('click',function(){
-    panel.style.display='none'; panel.innerHTML='';
-    if(!isArchive){ users[u].openId=null; renderCards(u); }
-    else{ document.getElementById(u+'ArchiveSelect').value=''; }
+  document.getElementById(closeId).addEventListener('click',function(){
+    panel.style.display='none';panel.innerHTML='';
+    if(!isArchive){users[u].openId=null;renderCards(u);}
+    else{document.getElementById(u+'ArchiveSelect').value='';}
   });
   if(!logged){
-    document.getElementById('lb_'+u+'_'+isArchive).addEventListener('click',function(){
-      doLog(w.id, w.type, u);
-      var btn=document.getElementById('lb_'+u+'_'+isArchive);
-      if(btn){btn.className='log-btn done';btn.textContent='✓ Logged today';}
+    document.getElementById(logId).addEventListener('click',function(){
+      doLog(w.id,w.type,u);
+      var btn=document.getElementById(logId);
+      if(btn){btn.className='log-btn done';btn.textContent='&#10003; Logged today';}
     });
   }
 }
-
-function doLog(id, type, u){
+function doLog(id,type,u){
   var key=todayKey();
-  var logs=getLogs(u); logs[key]=type; setLogs(u,logs);
-  var last=getLast(u); last[id]=key;  setLast(u,last);
-  renderCal(u); renderCards(u);
-  toast('Workout logged — nice work.');
+  var logs=getLogs(u);logs[key]=type;setLogs(u,logs);
+  var last=getLast(u);last[id]=key;setLast(u,last);
+  renderCal(u);renderCards(u);
+  toast('Workout logged \u2014 nice work.');
 }
 
-/* ════════════════════════════════════
-   ARCHIVE
-════════════════════════════════════ */
+/* ── Archive ── */
 function populateArchive(u){
   var sel=document.getElementById(u+'ArchiveSelect');
-  while(sel.options.length>1) sel.remove(1);
+  while(sel.options.length>1)sel.remove(1);
   users[u].archived.forEach(function(w){
     var opt=document.createElement('option');
-    opt.value=w.id; opt.textContent=w.name+' ('+w.typeLabel+')';
+    opt.value=w.id;opt.textContent=w.name+' ('+w.typeLabel+')';
     sel.appendChild(opt);
   });
   if(users[u].archived.length===0){
-    var opt=document.createElement('option');
-    opt.disabled=true; opt.textContent='No archived workouts yet';
-    sel.appendChild(opt);
+    var opt=document.createElement('option');opt.disabled=true;opt.textContent='No archived workouts yet';sel.appendChild(opt);
   }
 }
-
-function openArchiveWorkout(u, id){
+function openArchiveWorkout(u,id){
   var w=users[u].archived.find(function(x){return x.id===id;});
   var panel=document.getElementById(u+'ArchivePanel');
   if(!w){panel.style.display='none';panel.innerHTML='';return;}
-  renderWorkoutPanel(w, u, panel, true);
+  renderWorkoutPanel(w,u,panel,true);
   setTimeout(function(){panel.scrollIntoView({behavior:'smooth',block:'nearest'});},60);
 }
 
-/* ════════════════════════════════════
-   TIMER FACTORY (shared by both tabs)
-════════════════════════════════════ */
-function makeTimer(displayId, startBtnId, resetBtnId, customId){
-  var total=60, remain=60, running=false, tick=null, actx=null;
-  function p2(n){return ('0'+n).slice(-2);}
-  function fmt(s){return p2(Math.floor(s/60))+':'+p2(s%60);}
-  function render(){document.getElementById(displayId).textContent=fmt(remain);}
+/* ── Timer factory ── */
+function makeTimer(displayId,startId,resetId,customId,timerKey){
+  var total=60,remain=60,running=false,tick=null,actx=null;
+  function render(){document.getElementById(displayId).textContent=p2(Math.floor(remain/60))+':'+p2(remain%60);}
   function setBtn(on){
-    var b=document.getElementById(startBtnId);
+    var b=document.getElementById(startId);
     if(on){b.textContent='Pause';b.classList.add('pause');b.classList.remove('start');}
-    else  {b.textContent='Start';b.classList.remove('pause');b.classList.add('start');}
+    else{b.textContent='Start';b.classList.remove('pause');b.classList.add('start');}
   }
   function done(){
     setBtn(false);
-    var el=document.getElementById(displayId);
-    el.classList.add('flash');
+    var el=document.getElementById(displayId);el.classList.add('flash');
     setTimeout(function(){el.classList.remove('flash');},800);
     try{
       if(!actx)actx=new(window.AudioContext||window.webkitAudioContext)();
@@ -860,133 +639,35 @@ function makeTimer(displayId, startBtnId, resetBtnId, customId){
     setTimeout(function(){remain=total;render();},1600);
   }
   function stop(){clearInterval(tick);running=false;}
-  function start(){
-    if(running)return;
-    if(remain<=0)remain=total;
-    running=true;setBtn(true);
-    tick=setInterval(function(){remain--;render();if(remain<=0){clearInterval(tick);running=false;done();}},1000);
-  }
-  function pause(){stop();setBtn(false);}
+  render();
   return {
     render:render,
-    toggle:function(){running?pause():start();},
+    toggle:function(){if(running){stop();setBtn(false);}else{if(remain<=0)remain=total;running=true;setBtn(true);tick=setInterval(function(){remain--;render();if(remain<=0){clearInterval(tick);running=false;done();}},1000);}},
     reset:function(){stop();remain=total;render();setBtn(false);},
-    setPreset:function(secs,btn,allBtns){
+    setPreset:function(secs,btn){
       stop();total=remain=secs;render();
-      if(allBtns)allBtns.forEach(function(b){b.classList.remove('active');});
+      document.querySelectorAll('.preset-btn[data-timer="'+timerKey+'"]').forEach(function(b){b.classList.remove('active');});
       btn.classList.add('active');
-      if(customId)document.getElementById(customId).value='';
+      document.getElementById(customId).value='';
     },
-    setCustom:function(val,allBtns){
-      var v=parseInt(val);
-      if(!v||v<=0)return;
+    setCustom:function(val){
+      var v=parseInt(val);if(!v||v<=0)return;
       stop();total=remain=v;render();
-      if(allBtns)allBtns.forEach(function(b){b.classList.remove('active');});
+      document.querySelectorAll('.preset-btn[data-timer="'+timerKey+'"]').forEach(function(b){b.classList.remove('active');});
     }
   };
 }
 
-/* ════════════════════════════════════
-   TIMER (Kevin — kept for direct wiring)
-════════════════════════════════════ */
-function fmtT(s){return p2(Math.floor(s/60))+':'+p2(s%60);}
-function renderTimer(){document.getElementById('timerDisplay').textContent=fmtT(tRemain);}
-function setPreset(secs,btn){
-  stopT(); tTotal=tRemain=secs; renderTimer();
-  document.querySelectorAll('.preset-btn').forEach(function(b){b.classList.remove('active');});
-  btn.classList.add('active');
-  document.getElementById('customTime').value='';
-}
-function setCustom(){
-  var v=parseInt(document.getElementById('customTime').value);
-  if(!v||v<=0)return;
-  stopT(); tTotal=tRemain=v; renderTimer();
-  document.querySelectorAll('.preset-btn').forEach(function(b){b.classList.remove('active');});
-}
-function stopT(){clearInterval(tTick);tRunning=false;}
-function resetT(){stopT();tRemain=tTotal;renderTimer();setTBtn(false);}
-function toggleT(){tRunning?pauseT():startT();}
-function startT(){
-  if(tRunning)return;
-  if(tRemain<=0)tRemain=tTotal;
-  tRunning=true;setTBtn(true);
-  tTick=setInterval(function(){
-    tRemain--;renderTimer();
-    if(tRemain<=0){clearInterval(tTick);tRunning=false;timerDone();}
-  },1000);
-}
-function pauseT(){clearInterval(tTick);tRunning=false;setTBtn(false);}
-function setTBtn(on){
-  var b=document.getElementById('startPauseBtn');
-  if(on){b.textContent='Pause';b.classList.add('pause');b.classList.remove('start');}
-  else  {b.textContent='Start';b.classList.remove('pause');b.classList.add('start');}
-}
-function timerDone(){
-  setTBtn(false);
-  var el=document.getElementById('timerDisplay');
-  el.classList.add('flash');
-  setTimeout(function(){el.classList.remove('flash');},800);
-  beep();
-  setTimeout(function(){tRemain=tTotal;renderTimer();},1600);
-}
-function beep(){
-  try{
-    if(!aCtx)aCtx=new(window.AudioContext||window.webkitAudioContext)();
-    [0,0.22,0.44].forEach(function(t){
-      var o=aCtx.createOscillator(),g=aCtx.createGain();
-      o.connect(g);g.connect(aCtx.destination);
-      o.type='square';o.frequency.value=880;
-      g.gain.setValueAtTime(0.25,aCtx.currentTime+t);
-      g.gain.exponentialRampToValueAtTime(0.001,aCtx.currentTime+t+0.18);
-      o.start(aCtx.currentTime+t);o.stop(aCtx.currentTime+t+0.2);
-    });
-  }catch(e){}
-}
-
-/* ════════════════════════════════════
-   LOAD WORKOUTS
-════════════════════════════════════ */
-function loadWorkouts(u, file){
-  fetch(file)
-    .then(function(r){return r.json();})
-    .then(function(data){
-      users[u].workouts = Array.isArray(data) ? data : (data.active||[]);
-      users[u].archived = Array.isArray(data) ? []   : (data.archived||[]);
-      renderCards(u);
-      populateArchive(u);
-    })
-    .catch(function(){users[u].workouts=[];users[u].archived=[];renderCards(u);});
-}
-
-/* ════════════════════════════════════
-   RANDOMIZER
-════════════════════════════════════ */
-var allExercises = [];
-var randCategory = 'all';
-var randSpinning = false;
-
-function loadExercises(){
-  fetch('exercises.json')
-    .then(function(r){return r.json();})
-    .then(function(data){ allExercises=data; })
-    .catch(function(){ allExercises=[]; });
-}
-
+/* ── Randomizer ── */
 function spinRandom(){
-  if(randSpinning) return;
-  var pool = randCategory==='all'
-    ? allExercises
-    : allExercises.filter(function(e){ return e.category===randCategory; });
-  if(!pool.length){
-    document.getElementById('randResult').innerHTML='<div class="rand-empty">No exercises in this category yet.</div>';
-    return;
-  }
+  if(randSpinning)return;
+  var pool=randCategory==='all'?allExercises:allExercises.filter(function(e){return e.category===randCategory;});
+  if(!pool.length){document.getElementById('randResult').innerHTML='<div class="rand-empty">No exercises in this category yet.</div>';return;}
   randSpinning=true;
-  var btn=document.getElementById('randSpinBtn');
-  btn.disabled=true; btn.textContent='Spinning...';
+  var btn=document.getElementById('randSpinBtn');btn.disabled=true;btn.textContent='Spinning...';
   var result=document.getElementById('randResult');
-  result.innerHTML='<div class="rand-ex-name" id="randSpinName">—</div>';
-  var ticks=0; var maxTicks=18;
+  result.innerHTML='<div class="rand-ex-name" id="randSpinName">&mdash;</div>';
+  var ticks=0;var maxTicks=20;
   var interval=setInterval(function(){
     var r=pool[Math.floor(Math.random()*pool.length)];
     document.getElementById('randSpinName').textContent=r.name;
@@ -999,47 +680,41 @@ function spinRandom(){
         '<div class="rand-ex-name">'+final.name+'</div>'+
         '<div class="rand-ex-desc">'+final.desc+'</div>'+
         '<button class="rand-again" id="randAgain">Spin again</button>';
-      document.getElementById('randAgain').addEventListener('click', spinRandom);
-      btn.disabled=false; btn.textContent='\u25B6 Spin';
+      document.getElementById('randAgain').addEventListener('click',spinRandom);
+      btn.disabled=false;btn.textContent='\u25B6 Spin';
       randSpinning=false;
     }
-  }, 80);
+  },80);
 }
 
-/* ════════════════════════════════════
-   BOOT
-════════════════════════════════════ */
-document.addEventListener('DOMContentLoaded', function(){
+/* ── Boot ── */
+document.addEventListener('DOMContentLoaded',function(){
   var d=new Date();
   var DN=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
   var MN=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   var dateStr=DN[d.getDay()]+' '+MN[d.getMonth()]+' '+d.getDate();
-  document.getElementById('kevinDate').textContent=dateStr;
-  document.getElementById('audraDate').textContent=dateStr;
-  document.getElementById('videoDate').textContent=dateStr;
+  ['kevinDate','audraDate','videoDate','randomDate'].forEach(function(id){document.getElementById(id).textContent=dateStr;});
 
-  /* Tab buttons */
+  /* Tabs */
   document.querySelectorAll('.tab-btn').forEach(function(btn){
-    btn.addEventListener('click',function(){ switchTab(btn.getAttribute('data-tab')); });
+    btn.addEventListener('click',function(){switchTab(btn.getAttribute('data-tab'));});
   });
 
-  /* Cal nav buttons */
+  /* Cal nav */
   document.querySelectorAll('.cal-nav').forEach(function(btn){
     btn.addEventListener('click',function(){
-      var u=btn.getAttribute('data-user');
-      var dir=btn.getAttribute('data-dir');
-      var s=users[u];
-      if(dir==='prev'){ s.calM--; if(s.calM<0){s.calM=11;s.calY--;} }
-      else            { s.calM++; if(s.calM>11){s.calM=0;s.calY++;} }
+      var u=btn.getAttribute('data-user');var dir=btn.getAttribute('data-dir');var s=users[u];
+      if(dir==='prev'){s.calM--;if(s.calM<0){s.calM=11;s.calY--;}}
+      else{s.calM++;if(s.calM>11){s.calM=0;s.calY++;}}
       renderCal(u);
     });
   });
 
-  /* Quick log buttons */
+  /* Quick log */
   document.querySelectorAll('.quick-btns').forEach(function(wrap){
     var u=wrap.getAttribute('data-user');
     wrap.querySelectorAll('.qbtn').forEach(function(btn){
-      btn.addEventListener('click',function(){ quickLog(u, btn.getAttribute('data-type')); });
+      btn.addEventListener('click',function(){quickLog(u,btn.getAttribute('data-type'));});
     });
   });
 
@@ -1047,55 +722,58 @@ document.addEventListener('DOMContentLoaded', function(){
   ['kevin','audra'].forEach(function(u){
     document.getElementById(u+'ArchiveSelect').addEventListener('change',function(){
       var id=this.value;
-      if(id) openArchiveWorkout(u,id);
-      else { var p=document.getElementById(u+'ArchivePanel'); p.style.display='none'; p.innerHTML=''; }
+      if(id)openArchiveWorkout(u,id);
+      else{var p=document.getElementById(u+'ArchivePanel');p.style.display='none';p.innerHTML='';}
     });
   });
 
-  /* Timer */
-  document.querySelectorAll('.preset-btn').forEach(function(btn){
-    btn.addEventListener('click',function(){ setPreset(parseInt(btn.getAttribute('data-secs')),btn); });
+  /* Timers */
+  var kevinTimer=makeTimer('kevinTimerDisplay','kevinStartBtn','kevinResetBtn','kevinCustomTime','kevin');
+  var audraTimer=makeTimer('audraTimerDisplay','audraStartBtn','audraResetBtn','audraCustomTime','audra');
+  document.getElementById('kevinStartBtn').addEventListener('click',kevinTimer.toggle);
+  document.getElementById('kevinResetBtn').addEventListener('click',kevinTimer.reset);
+  document.getElementById('audraStartBtn').addEventListener('click',audraTimer.toggle);
+  document.getElementById('audraResetBtn').addEventListener('click',audraTimer.reset);
+  document.querySelectorAll('.preset-btn[data-timer="kevin"]').forEach(function(btn){
+    btn.addEventListener('click',function(){kevinTimer.setPreset(parseInt(btn.getAttribute('data-secs')),btn);});
   });
-  document.getElementById('startPauseBtn').addEventListener('click',toggleT);
-  document.getElementById('resetBtn').addEventListener('click',resetT);
-  document.getElementById('customTime').addEventListener('change',setCustom);
-  document.getElementById('customTime').addEventListener('keydown',function(e){if(e.key==='Enter')setCustom();});
-
-  /* Load data */
-  loadWorkouts('kevin','workouts.json');
-  loadWorkouts('audra','audra-workouts.json');
-  loadExercises();
-  renderCal('kevin');
-  renderCal('audra');
-  renderTimer();
-
-  /* Audra timer */
-  var audraTimer = makeTimer('audraTimerDisplay','audraStartPauseBtn','audraResetBtn','audraCustomTime');
   document.querySelectorAll('.preset-btn[data-timer="audra"]').forEach(function(btn){
-    btn.addEventListener('click',function(){
-      audraTimer.setPreset(parseInt(btn.getAttribute('data-secs')),btn,
-        document.querySelectorAll('.preset-btn[data-timer="audra"]'));
-    });
+    btn.addEventListener('click',function(){audraTimer.setPreset(parseInt(btn.getAttribute('data-secs')),btn);});
   });
-  document.getElementById('audraStartPauseBtn').addEventListener('click', audraTimer.toggle);
-  document.getElementById('audraResetBtn').addEventListener('click', audraTimer.reset);
-  document.getElementById('audraCustomTime').addEventListener('change', function(){
-    audraTimer.setCustom(document.getElementById('audraCustomTime').value,
-      document.querySelectorAll('.preset-btn[data-timer="audra"]'));
-  });
+  document.getElementById('kevinCustomTime').addEventListener('change',function(){kevinTimer.setCustom(this.value);});
+  document.getElementById('kevinCustomTime').addEventListener('keydown',function(e){if(e.key==='Enter')kevinTimer.setCustom(this.value);});
+  document.getElementById('audraCustomTime').addEventListener('change',function(){audraTimer.setCustom(this.value);});
+  document.getElementById('audraCustomTime').addEventListener('keydown',function(e){if(e.key==='Enter')audraTimer.setCustom(this.value);});
 
   /* Randomizer */
   document.querySelectorAll('.rand-filter').forEach(function(btn){
     btn.addEventListener('click',function(){
       document.querySelectorAll('.rand-filter').forEach(function(b){b.classList.remove('active');});
-      btn.classList.add('active');
-      randCategory=btn.getAttribute('data-cat');
+      btn.classList.add('active');randCategory=btn.getAttribute('data-cat');
     });
   });
-  document.getElementById('randSpinBtn').addEventListener('click', spinRandom);
+  document.getElementById('randSpinBtn').addEventListener('click',spinRandom);
 
-  /* Random tab date */
-  document.getElementById('randomDate').textContent=dateStr;
+  /* Load data */
+  function loadWorkouts(u,file){
+    fetch(file)
+      .then(function(r){return r.json();})
+      .then(function(data){
+        users[u].workouts=Array.isArray(data)?data:(data.active||[]);
+        users[u].archived=Array.isArray(data)?[]:(data.archived||[]);
+        renderCards(u);populateArchive(u);
+      })
+      .catch(function(){users[u].workouts=[];users[u].archived=[];renderCards(u);});
+  }
+  fetch('exercises.json')
+    .then(function(r){return r.json();})
+    .then(function(data){allExercises=data;})
+    .catch(function(){allExercises=[];});
+
+  loadWorkouts('kevin','workouts.json');
+  loadWorkouts('audra','audra-workouts.json');
+  renderCal('kevin');
+  renderCal('audra');
 });
 </script>
 </body>
